@@ -30,7 +30,7 @@ Boxer,21,25,65,70
 Briard,23,27,74,76
 Chesapeake Bay Retriever,21,26,55,75
 Clumber Spaniel,19,20,35,65
-Collie (Rough) & (Smooth),22,26,50,75
+Collie,22,26,50,75
 Curly Coated Retriever,25,27,65,80
 Doberman Pinscher,26,28,60,100
 English Foxhound,22,25,65,70
@@ -45,7 +45,7 @@ Greyhound,27,30,60,70
 Irish Setter,25,27,60,70
 Komondor,26.5,35.5,80,135
 Labrador Retriever,21,24,55,80
-Old English Sheepdog (Bobtail),20,24,60,65
+Old English Sheepdog,20,24,60,65
 Poodle Standard,15,25,45,45
 Rhodesian Ridgeback,24,27,70,85
 Scottish Deerhound,28,32,75,110
@@ -66,8 +66,7 @@ Bull Terrier,21,22,50,70
 Canaan Dog,19,24,35,55
 Chinese Shar Pei,18,20,45,55
 Chow Chow,19,22,45,55
-Cocker Spaniel-American,15,16,22,28
-Cocker Spaniel-English,15,17,25,35
+Cocker Spaniel,15,16,22,28
 Dalmatian,19,23,45,70
 English Springer Spaniel,20,20,45,55
 Field Spaniel,18,18,35,50
@@ -121,14 +120,14 @@ French Bulldog,11,12,17,28
 German Pinscher,16,19,25,35
 Glen Imaal Terrier,14,14,34,36
 Lakeland Terrier,13,14,15,17
-Manchester Terrier (Standard),15,16,17,18
+Manchester Terrier,15,16,17,18
 Poodle Miniature,10,15,20,20
 Pug,10,11,14,22
 Puli,16,17,29,33
 Schipperke,10,13,12,18
 Scottish Terrier,10,12,18,22
 Sealyham Terrier,12,12,18,20
-Shetland Sheepdog (Sheltie),13,16,14,20
+Shetland Sheepdog,13,16,14,20
 Shiba Inu,13,16,15,30
 Shih Tzu,8,11,9,16
 Silky Terrier,9,10,8,11
@@ -144,7 +143,7 @@ Chinese Crested,11,13,5,12
 Italian Greyhound,12,15,6,10
 Japanese Chin,8,11,4,11
 Maltese,8,10,4,6
-Manchester Terrier (Toy),10,12,6,8
+Manchester Terrier,10,12,6,8
 Papillon,8,11,5,10
 Pomeranian,12,12,3,7
 Toy Poodle,10,10,10,10
