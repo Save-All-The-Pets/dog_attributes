@@ -25,7 +25,7 @@ https://en.wikipedia.org/wiki/Belgian_Tervuren
 https://en.wikipedia.org/wiki/Black_And_Tan_Coonhound
 https://en.wikipedia.org/wiki/Black_Russian_Terrier
 https://en.wikipedia.org/wiki/Bouvier_Des_Flandres
-https://en.wikipedia.org/wiki/Boxer
+https://en.wikipedia.org/wiki/Boxer_(dog)
 https://en.wikipedia.org/wiki/Briard
 https://en.wikipedia.org/wiki/Chesapeake_Bay_Retriever
 https://en.wikipedia.org/wiki/Clumber_Spaniel
@@ -60,7 +60,7 @@ https://en.wikipedia.org/wiki/Basset_Hound
 https://en.wikipedia.org/wiki/Bearded_Collie
 https://en.wikipedia.org/wiki/Border_Collie
 https://en.wikipedia.org/wiki/Brittany
-https://en.wikipedia.org/wiki/Bull_Dog
+https://en.wikipedia.org/wiki/Bulldog
 https://en.wikipedia.org/wiki/Bull_Terrier
 https://en.wikipedia.org/wiki/Canaan_Dog
 https://en.wikipedia.org/wiki/Chinese_Shar_Pei
@@ -82,7 +82,7 @@ https://en.wikipedia.org/wiki/Nova_Scotia_Duck_Tolling_Retriever
 https://en.wikipedia.org/wiki/Petit_Basset_Griffon_Vendeen
 https://en.wikipedia.org/wiki/Pharaoh_Hound
 https://en.wikipedia.org/wiki/Plott_Hound
-https://en.wikipedia.org/wiki/Pointer
+https://en.wikipedia.org/wiki/Pointer_(dog_breed)
 https://en.wikipedia.org/wiki/Polish_Lowland_Sheepdog
 https://en.wikipedia.org/wiki/Portuguese_Water_Dog
 https://en.wikipedia.org/wiki/Redbone_Coonhound
@@ -145,6 +145,5 @@ https://en.wikipedia.org/wiki/Maltese
 https://en.wikipedia.org/wiki/Manchester_Terrier
 https://en.wikipedia.org/wiki/Papillon
 https://en.wikipedia.org/wiki/Pomeranian
-https://en.wikipedia.org/wiki/Toy_Poodle
 https://en.wikipedia.org/wiki/Toy_Fox_Terrier
 https://en.wikipedia.org/wiki/Yorkshire_Terrier
