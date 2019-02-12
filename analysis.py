@@ -13,7 +13,7 @@ data = db['data']
 nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset.csv')
 iq = pd.read_csv('dogdata/dog_intelligence.csv')
 nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 2016 data
-edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood-edit.csv')
+edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2016-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016.csv')
 
 # Make the census columns understandable
