@@ -34,6 +34,26 @@ pprint('Manhattan Dog IQ: ' + str(manhattan['obey'].mean()))
 pprint('Brooklyn Dog IQ: ' + str(brooklyn['obey'].mean()))
 pprint('Bronx Dog IQ: ' + str(bronx['obey'].mean()))
 pprint('Staten Island Dog IQ: ' + str(staten['obey'].mean()))
+pprint('Queens Standard Deviation: ' + str(queens['obey'].std()))
+pprint('Manhattan Standard Deviation: ' + str(manhattan['obey'].std()))
+pprint('Brooklyn Standard Deviation: ' + str(brooklyn['obey'].std()))
+pprint('Bronx Standard Deviation: ' + str(bronx['obey'].std()))
+pprint('Staten Island Standard Deviation: ' + str(staten['obey'].std()))
+
+
+# Adelaide
+adelaide_iq = adelaide_registry.set_index('AnimalBreed').join(iq.set_index('Breed'), how='left')
+pprint('Adelaide Dog IQ: ' + str(adelaide_iq['obey'].mean()))
+pprint('Adelaide Standard Deviation: ' + str(adelaide_iq['obey'].std()))
+
+# Edmonton
+edmonton_iq = edmonton_registry.set_index('BREED').join(iq.set_index('Breed'), how='left')
+pprint('Edmonton Dog IQ: ' + str(edmonton_iq['obey'].mean()))
+pprint('Edmonton Standard Deviation: ' + str(edmonton_iq['obey'].std()))
+
+
+# pprint(manhattan.count())
+# pprint(staten.count())
 
 # Sometimes centimeters are first and sometimes inches are first
 # wiki['Height'] = wiki['Height'].apply(lambda x: re.search(r'\d+', x).group())
