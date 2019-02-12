@@ -3,6 +3,8 @@ import time
 from pprint import pprint
 import sys
 import pandas as pd
+from fuzzywuzzy import fuzz
+# from fuzzywuzzy import process
 
 client = MongoClient('localhost', 27017)
 # Access/Initiate Database
@@ -11,9 +13,9 @@ db = client['dogs']
 data = db['data']
 
 nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset.csv')
-iq = pd.read_csv('dogdata/dog_intelligence.csv')
+iq = pd.read_csv('dogdata/dog_intelligence-edit.csv')
 nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 2016 data
-edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2016-edit.csv')
+edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016.csv')
 
 # Make the census columns understandable
@@ -34,3 +36,6 @@ pprint(nyc_census.head())
 pprint(iq.head())
 pprint(edmonton_registry.head())
 pprint(adelaide_registry.head())
+
+
+# fuzz.ratio(
