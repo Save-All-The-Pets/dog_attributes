@@ -1,20 +1,11 @@
-from pymongo import MongoClient
 import time
 from pprint import pprint
 import sys
 import pandas as pd
 from fuzzywuzzy import fuzz
 import re
-# from fuzzywuzzy import process
 
-# Convert mongo to a DataFrame
-client = MongoClient('localhost', 27017)
-# Access/Initiate Database
-db = client['dogs']
-# Access/Initiate Table
-data = db['data']
-#convert entire collection to Pandas dataframe
-wiki = pd.DataFrame(list(data.find()))
+
 
 nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
 iq = pd.read_csv('dogdata/dog_intelligence-edit.csv')
@@ -33,7 +24,6 @@ age_65_74 = 'VC23'; age_75_over = 'VC24'
 
 # Sometimes centimeters are first and sometimes inches are first
 # wiki['Height'] = wiki['Height'].apply(lambda x: re.search(r'\d+', x).group())
-
 
 pprint(nyc_registry.head())
 pprint(nyc_census.head())
