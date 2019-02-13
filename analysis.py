@@ -11,6 +11,7 @@ nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 
 edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
+turcsan = pd.read_csv('dogdata/turcsan.csv')
 
 # Canine intelligence by AKC Groupings
 wiki_pared = wiki[['Breed', 'AKC']]
@@ -29,8 +30,13 @@ age_25_34 = 'VC19'; age_35_44 = 'VC20'
 age_45_54 = 'VC21'; age_55_64 = 'VC22'
 age_65_74 = 'VC23'; age_75_over = 'VC24'
 
+# Strip out dirty values
+nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: '' if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
+
+
 nyc_iq = nyc_registry.set_index('BreedName').join(iq.set_index('Breed'), how='left')
 
+#Redo this section, which is inefficient
 queens = nyc_iq[nyc_iq['Borough'] == 'Queens']
 manhattan = nyc_iq[nyc_iq['Borough'] == 'Manhattan']
 brooklyn = nyc_iq[nyc_iq['Borough'] == 'Brooklyn']
@@ -50,6 +56,10 @@ print('Brooklyn Standard Deviation: ' + str(brooklyn['obey'].std()))
 print('Bronx Standard Deviation: ' + str(bronx['obey'].std()))
 print('Staten Island Standard Deviation: ' + str(staten['obey'].std()))
 print('NYC Overall Standard Deviation: ' + str(nyc_iq['obey'].std()))
+
+nyc_iq_t = nyc_registry.set_index('BreedName').join(turcsan.set_index('Breed'), how='left')
+nyc_iq_t_g = nyc_iq_t.groupby('Borough').mean()
+pprint(nyc_iq_t_g)
 
 # Adelaide
 adelaide_iq = adelaide_registry.set_index('AnimalBreed').join(iq.set_index('Breed'), how='left')
