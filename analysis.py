@@ -6,12 +6,15 @@ from fuzzywuzzy import fuzz
 import re
 
 nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
-iq = pd.read_csv('dogdata/dog_intelligence-edit.csv')
+coren = pd.read_csv('dogdata/dog_intelligence-edit.csv')
 nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 2016 data
 edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
-turcsan = pd.read_csv('dogdata/turcsan.csv')
+iq = turcsan = pd.read_csv('dogdata/turcsan.csv')
+
+#iq = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='inner')
+
 
 # Canine intelligence by AKC Groupings
 wiki_pared = wiki[['Breed', 'AKC']]
@@ -30,32 +33,33 @@ age_25_34 = 'VC19'; age_35_44 = 'VC20'
 age_45_54 = 'VC21'; age_55_64 = 'VC22'
 age_65_74 = 'VC23'; age_75_over = 'VC24'
 
+
+
 # Strip out dirty values
 nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: '' if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
-
 
 nyc_iq = nyc_registry.set_index('BreedName').join(iq.set_index('Breed'), how='left')
 
 #Redo this section, which is inefficient
-queens = nyc_iq[nyc_iq['Borough'] == 'Queens']
-manhattan = nyc_iq[nyc_iq['Borough'] == 'Manhattan']
-brooklyn = nyc_iq[nyc_iq['Borough'] == 'Brooklyn']
-bronx = nyc_iq[nyc_iq['Borough'] == 'Bronx']
-staten = nyc_iq[nyc_iq['Borough'] == 'Staten Island']
+# queens = nyc_iq[nyc_iq['Borough'] == 'Queens']
+# manhattan = nyc_iq[nyc_iq['Borough'] == 'Manhattan']
+# brooklyn = nyc_iq[nyc_iq['Borough'] == 'Brooklyn']
+# bronx = nyc_iq[nyc_iq['Borough'] == 'Bronx']
+# staten = nyc_iq[nyc_iq['Borough'] == 'Staten Island']
 
-print('Queens: ' + str(queens['obey'].mean()))
-print('Manhattan: ' + str(manhattan['obey'].mean()))
-print('Brooklyn: ' + str(brooklyn['obey'].mean()))
-print('Bronx: ' + str(bronx['obey'].mean()))
-print('Staten Island: ' + str(staten['obey'].mean()))
-print('NYC Overall: ' + str(nyc_iq['obey'].mean()))
+# print('Queens: ' + str(queens['obey'].mean()))
+# print('Manhattan: ' + str(manhattan['obey'].mean()))
+# print('Brooklyn: ' + str(brooklyn['obey'].mean()))
+# print('Bronx: ' + str(bronx['obey'].mean()))
+# print('Staten Island: ' + str(staten['obey'].mean()))
+# print('NYC Overall: ' + str(nyc_iq['obey'].mean()))
 
-print('Queens Standard Deviation: ' + str(queens['obey'].std()))
-print('Manhattan Standard Deviation: ' + str(manhattan['obey'].std()))
-print('Brooklyn Standard Deviation: ' + str(brooklyn['obey'].std()))
-print('Bronx Standard Deviation: ' + str(bronx['obey'].std()))
-print('Staten Island Standard Deviation: ' + str(staten['obey'].std()))
-print('NYC Overall Standard Deviation: ' + str(nyc_iq['obey'].std()))
+# print('Queens Standard Deviation: ' + str(queens['obey'].std()))
+# print('Manhattan Standard Deviation: ' + str(manhattan['obey'].std()))
+# print('Brooklyn Standard Deviation: ' + str(brooklyn['obey'].std()))
+# print('Bronx Standard Deviation: ' + str(bronx['obey'].std()))
+# print('Staten Island Standard Deviation: ' + str(staten['obey'].std()))
+# print('NYC Overall Standard Deviation: ' + str(nyc_iq['obey'].std()))
 
 nyc_iq_t = nyc_registry.set_index('BreedName').join(turcsan.set_index('Breed'), how='left')
 nyc_iq_t_g = nyc_iq_t.groupby('Borough').mean()
