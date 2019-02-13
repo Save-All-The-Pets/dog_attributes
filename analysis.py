@@ -3,6 +3,7 @@ from pprint import pprint
 import pandas as pd
 import sys
 from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
 import re
 
 nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
@@ -16,7 +17,7 @@ attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 #attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='inner')
 
 
-# Canine intelligence by AKC Groupings
+# Canine attributes by AKC Groupings
 wiki_pared = wiki[['Breed', 'AKC']]
 akc_groups_attrib = wiki_pared.set_index('Breed').join(attrib.set_index('Breed'), how='left')
 akc = akc_groups_attrib.groupby('AKC').mean()
@@ -60,22 +61,9 @@ print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std())
 # Which ancestral homeland has the smartest/most obedient dogs?
 ancestral = wiki[['Breed', 'Origin']]
 
-ancestral_uk_ire = ancestral.copy()
-ancestral_uk_ire.dropna()
-ancestral_uk_ire = ancestral_uk_ire.loc[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
-ancestral_uk_ire_attrib = ancestral_uk_ire.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
-ancestral_uk_ire_attrib_group = ancestral_uk_ire_attrib.groupby('Origin').mean()
-print('UK and Ireland only')
-pprint(ancestral_uk_ire_attrib_group)
-ancestral_uk_ire_std = ancestral_uk_ire_attrib.groupby('Origin').std()
-pprint(ancestral_uk_ire_std)
-ancestral_uk_ire_count = ancestral_uk_ire_attrib.groupby('Origin').count()
-pprint(ancestral_uk_ire_count)
-
 # Combining Scotland, Wales, and England as United Kingdom
-ancestral2 = ancestral.copy()
-ancestral2['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
-ancestral_attrib = ancestral2.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
+ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
+ancestral_attrib = ancestral.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
 
 # Take cells with multiple countries and split them into separate countries
 def splitDataFrameList(df,target_column,separator):
@@ -110,21 +98,12 @@ coren_breeds = set(coren['Breed'].tolist())
 turcsan_breeds = set(turcsan['Breed'].tolist())
 
 print('Intersection')
-print(wiki_breeds & coren_breeds)
+print(wiki_breeds & turcsan_breeds)
 print('Difference')
-print(wiki_breeds - coren_breeds)
-print(coren_breeds - wiki_breeds)
+print(wiki_breeds - turcsan_breeds)
+print(turcsan_breeds - wiki_breeds)
 
-# pprint(manhattan.count())
-# pprint(staten.count())
-
-# pprint(nyc_registry.head())
-# pprint(nyc_census.head())
-# pprint(attrib.head())
-# pprint(edmonton_registry.head())
-# pprint(adelaide_registry.head())
-# pprint(wiki.head())
-# nyc_registry.describe()
-
-# Use fuzzing after exact match
-# fuzz.ratio(
+comparison = wiki[['Breed']]
+comparison['Turcsan'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(turcsan_breeds)) if x not in turcsan_breeds else '')
+comparison['Coren'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(coren_breeds)) if x not in coren_breeds else '')
+comparison.to_csv('dogdata/comparisons.csv')

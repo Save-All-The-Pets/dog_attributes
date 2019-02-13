@@ -8,15 +8,16 @@ Bulldog,1,0.5,1,1
 Cavalier King Charles Spaniel,1,0.5,1,1
 French Bulldog,1,0.5,1,1
 Golden Retriever,1,0.5,1,1
-Gordon Setter ,1,0.5,1,1
-Greater Swiss Mountain Dog Havanese,1,0.5,1,1
+Gordon Setter,1,0.5,1,1
+Greater Swiss Mountain Dog,1,0.5,1,1
+Havanese,1,0.5,1,1
 Irish Setter,1,0.5,1,1
-Labrador Retriever Leonberger ,1,0.5,1,1
+Labrador Retriever Leonberger,1,0.5,1,1
 Old English Sheepdog,1,0.5,1,1
 Miniature Schnauzer,1,0.5,1,1
 Pekingese,1,0.5,1,1
-Pointer ,1,0.5,1,1
-Pug ,1,0.5,1,1
+Pointer,1,0.5,1,1
+Pug,1,0.5,1,1
 Saint Bernard,1,0.5,1,1
 Shetland Sheepdog,1,0.5,1,1
 Shih Tzu,1,0.5,1,1
@@ -24,24 +25,25 @@ Siberian Husky,1,0.5,1,1
 Small Munsterlander,1,0.5,1,1
 Soft-Coated Wheaten Terrier,1,0.5,1,1
 Staffordshire Bull Terrier,1,0.5,1,1
-Whippet ,1,0.5,1,1
+Whippet,1,0.5,1,1
 American Staffordshire Terrier,0,1,0,0
 Australian Shepherd,0,1,0,0
 Bavarian Mountain Hound,0,1,0,0
-Belgian Malinois ,0,1,0,0
+Belgian Malinois,0,1,0,0
 Border Collie,0,1,0,0
 Border Terrier,0,1,0,0
 Boxer,0,1,0,0
 Cairn Terrier,0,1,0,0
 Dachshund,0,1,0,0
 Dalmatian,0,1,0,0
-Doberman Pinscher ,0,1,0,0
+Doberman Pinscher,0,1,0,0
 English Cocker Spaniel,0,1,0,0
-Great Dane Hovawart,0,1,0,0
+Great Dane,0,1,0,0
+Hovawart,0,1,0,0
 Irish Terrier,0,1,0,0
 Jack Russell Terrier,0,1,0,0
-Miniature Pinscher ,0,1,0,0
-Entlebucher Mountain Dog ,0,1,0,0
+Miniature Pinscher,0,1,0,0
+Entlebucher Mountain Dog,0,1,0,0
 German Hunting Terrier,0,1,0,0
 German Shepherd,0,1,0,0
 German Wirehaired Pointer,0,1,0,0
@@ -52,14 +54,14 @@ Standard Schnauzer,0,1,0,0
 Poodle,0,1,0,0
 Vizsla,0,1,0,0
 Welsh Terrier,0,1,0,0
-West Highland Wheaten Terrier ,0,1,0,0
-Tibetan Terrier ,0,1,0,0
-Wirehaired Dachshund Wolfspitz ,0,1,0,0
+West Highland Wheaten Terrier,0,1,0,0
+Tibetan Terrier,0,1,0,0
+Wirehaired Dachshund Wolfspitz,0,1,0,0
 Flat-Coated Retriever,1,1,1,1
 German Shorthaired Pointer,1,1,1,1
 Appenzeller Sennenhund,0,1,0.5,0
 Briard,0,1,0.5,0
-Collie ,0,1,0.5,0
+Collie,0,1,0.5,0
 Ibizan Hound,0,1,0.5,0
 Beauceron,0,1,0.5,0
 Kromfohrlander,0,1,0.5,0
@@ -68,22 +70,22 @@ Miniature Dachshund,0,1,0.5,0
 Miniature Poodle,0,1,0.5,0
 Pyrenean Shepherd,0,1,0.5,0
 Rhodesian Ridgeback,0,1,0.5,0
-White Swiss Shepherd ,0,1,0.5,0
+White Swiss Shepherd,0,1,0.5,0
 Shiba Inu,0,1,0.5,0
 Weimaraner,0,1,0.5,0
 Brittany,0,0,0,0.5
 Bull Terrier,0,0,0,0.5
-Chihuahua ,0,0,0,0.5
+Chihuahua,0,0,0,0.5
 German Spitz,0,0,0,0.5
 Maltese,0,0,0,0.5
-Perro de Presa Canario ,0,0,0,0.5
+Perro de Presa Canario,0,0,0,0.5
 Yorkshire Terrier,0,0,0,0.5
 Alaskan Malamute,1,0,0.5,0
 Anatolian Shepherd Dog,1,0,0.5,0
-Shar-Pei ,1,0,0.5,0
+Shar-Pei,1,0,0.5,0
 Coton de Tulear,1,0,0.5,0
 Dogue de Bordeaux,1,0,0.5,0
-English Setter ,1,0,0.5,0
+English Setter,1,0,0.5,0
 Eurasier,1,0,0.5,0
 Irish Wolfhound,1,0,0.5,0
-Lhasa Apso ,1,0,0.5,0
+Lhasa Apso,1,0,0.5,0
