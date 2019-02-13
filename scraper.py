@@ -39,13 +39,13 @@ for url in lst:
             try:
                 if (cat == 'Color'):
                     d[cat] = infobox[0].xs(cat).values[0][0]
-                elif (cat == 'Weight'):
-                    if infobox[0].xs('Weight').values[0][0] == 'Male':
+                elif (cat == 'Weight'): # unnecessary due to additional dataset on height and weight
+                    if infobox[0].xs(cat).values[0][0] == 'Male':
                         d[cat] = infobox[0].xs(cat).values[0][1]
                     else:
                         d[cat] = infobox[0].xs(cat).values[0][0]                        
-                elif (cat == 'Height'):
-                    if infobox[0].xs('Height').values[0][0] == 'Male':
+                elif (cat == 'Height'): # unnecessary due to additional dataset on height and weight
+                    if infobox[0].xs(cat).values[0][0] == 'Male':
                         d[cat] = infobox[0].xs(cat).values[0][1]
                     else:
                         d[cat] = infobox[0].xs(cat).values[0][0]  

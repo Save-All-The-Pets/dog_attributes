@@ -1,6 +1,6 @@
 # Study Design
 
-## Data Sources
+## Data sources
 
 Publicly available data on NYC..........
 
@@ -16,12 +16,23 @@ Once I've brought in all the data and packaged it, I will start looking at relat
 
 I've requested voting data for this set, meaning that I will be able to look at what kinds of dogs Republicans, Democrats, and Independent voters prefer.
 
+Genetic markers
+
 ## Notes on the data
 
-Staten Island data is unavailable
+Staten Island census data is unavailable
 Male data was used for dog height and weight
 For lowest category of dog intelligence, "obey" was not specified. I am assigning a value of 0.10
-Edmonton had almost no data for 2016 and very little for 2017, so I'm using 2018 data
+Edmonton had almost no data for 2016 and very little for 2017, so I'm using 2018 data.
 Removing "miniature" from the dataset.
 For further research, someone could use the census tract data in the NYC dataset.
 Extracting the first number from the height/weight for simplicity.
+Pulling data from Wikipedia, of course, allows for a small margin of error in the data.
+Toy Terriers were treated as Terriers, not Toys, in the AKC rankings.
+
+## Sources
+
+[City of Adelaide Dog Registrations](https://data.gov.au/dataset/ds-sa-8aa33af5-4146-447e-b9e9-0c00b616cd38/details)
+[NYC Dog Licensing Dataset](https://data.cityofnewyork.us/Health/NYC-Dog-Licensing-Dataset/nu7n-tubp)
+[Edmonton Dog Licences Data Set](https://data.edmonton.ca/Community-Services/Pet-Licenses-by-Neighbourhood/5squ-mg4w)
+[The Intelligence of Dogs by Stanley Coren](https://data.world/len/intelligence-of-dogs)

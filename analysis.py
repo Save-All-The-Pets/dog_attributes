@@ -1,6 +1,5 @@
 import time
 from pprint import pprint
-import sys
 import pandas as pd
 from fuzzywuzzy import fuzz
 import re
@@ -11,6 +10,14 @@ nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 
 edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
+
+# Canine intelligence by AKC Groupings
+wiki_pared = wiki[['Breed', 'AKC']]
+akc_groups_iq = wiki_pared.set_index('Breed').join(iq.set_index('Breed'), how='left')
+akc = akc_groups_iq.groupby('AKC').mean()
+pprint(akc)
+akc_count = akc_groups_iq.groupby('AKC').count()
+pprint(akc_count)
 
 # Make the census columns understandable
 val = 'EST_'
@@ -29,45 +36,59 @@ brooklyn = nyc_iq[nyc_iq['Borough'] == 'Brooklyn']
 bronx = nyc_iq[nyc_iq['Borough'] == 'Bronx']
 staten = nyc_iq[nyc_iq['Borough'] == 'Staten Island']
 
-pprint('Queens Dog IQ: ' + str(queens['obey'].mean()))
-pprint('Manhattan Dog IQ: ' + str(manhattan['obey'].mean()))
-pprint('Brooklyn Dog IQ: ' + str(brooklyn['obey'].mean()))
-pprint('Bronx Dog IQ: ' + str(bronx['obey'].mean()))
-pprint('Staten Island Dog IQ: ' + str(staten['obey'].mean()))
-pprint('NYC Overall Dog IQ: ' + str(nyc_iq['obey'].mean()))
+print('Queens: ' + str(queens['obey'].mean()))
+print('Manhattan: ' + str(manhattan['obey'].mean()))
+print('Brooklyn: ' + str(brooklyn['obey'].mean()))
+print('Bronx: ' + str(bronx['obey'].mean()))
+print('Staten Island: ' + str(staten['obey'].mean()))
+print('NYC Overall: ' + str(nyc_iq['obey'].mean()))
 
-pprint('Queens Standard Deviation: ' + str(queens['obey'].std()))
-pprint('Manhattan Standard Deviation: ' + str(manhattan['obey'].std()))
-pprint('Brooklyn Standard Deviation: ' + str(brooklyn['obey'].std()))
-pprint('Bronx Standard Deviation: ' + str(bronx['obey'].std()))
-pprint('Staten Island Standard Deviation: ' + str(staten['obey'].std()))
-pprint('NYC Overall Standard Deviation: ' + str(nyc_iq['obey'].std()))
+print('Queens Standard Deviation: ' + str(queens['obey'].std()))
+print('Manhattan Standard Deviation: ' + str(manhattan['obey'].std()))
+print('Brooklyn Standard Deviation: ' + str(brooklyn['obey'].std()))
+print('Bronx Standard Deviation: ' + str(bronx['obey'].std()))
+print('Staten Island Standard Deviation: ' + str(staten['obey'].std()))
+print('NYC Overall Standard Deviation: ' + str(nyc_iq['obey'].std()))
 
 # Adelaide
 adelaide_iq = adelaide_registry.set_index('AnimalBreed').join(iq.set_index('Breed'), how='left')
-pprint('Adelaide Dog IQ: ' + str(adelaide_iq['obey'].mean()))
-pprint('Adelaide Standard Deviation: ' + str(adelaide_iq['obey'].std()))
+print('Adelaide: ' + str(adelaide_iq['obey'].mean()))
+print('Adelaide Standard Deviation: ' + str(adelaide_iq['obey'].std()))
 
 # Edmonton
 edmonton_iq = edmonton_registry.set_index('BREED').join(iq.set_index('Breed'), how='left')
-pprint('Edmonton Dog IQ: ' + str(edmonton_iq['obey'].mean()))
-pprint('Edmonton Standard Deviation: ' + str(edmonton_iq['obey'].std()))
+print('Edmonton: ' + str(edmonton_iq['obey'].mean()))
+print('Edmonton Standard Deviation: ' + str(edmonton_iq['obey'].std()))
 
 # Which ancestral homeland has the smartest/most obedient dogs?
-
-# For this analysis, we'll combine Scotland, Wales, and England as United Kingdom
 ancestral = wiki[['Breed', 'Origin']]
-ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x == 'England' or x == 'Wales' or x == 'Scotland' else x)
-ancestral_iq = ancestral.set_index('Breed').join(iq.set_index('Breed'), how='inner')
+
+# Only looking at the UK and Ireland
+ancestral_uk_ire = ancestral.copy()
+ancestral_uk_ire.dropna()
+ancestral_uk_ire = ancestral_uk_ire.loc[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
+ancestral_uk_ire_iq = ancestral_uk_ire.set_index('Breed').join(iq.set_index('Breed'), how='inner')
+ancestral_uk_ire_iq_group = ancestral_uk_ire_iq.groupby('Origin').mean()
+print('UK and Ireland only')
+pprint(ancestral_uk_ire_iq_group)
+ancestral_uk_ire_std = ancestral_uk_ire_iq.groupby('Origin').std()
+pprint(ancestral_uk_ire_std)
+ancestral_uk_ire_count = ancestral_uk_ire_iq.groupby('Origin').count()
+pprint(ancestral_uk_ire_count)
+
+# Combining Scotland, Wales, and England as United Kingdom
+ancestral2 = ancestral.copy()
+ancestral2['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
+ancestral_iq = ancestral2.set_index('Breed').join(iq.set_index('Breed'), how='inner')
+
 # Take cells with multiple countries and split them into separate countries
-
-
 def splitDataFrameList(df,target_column,separator):
     ''' df = dataframe to split,
     target_column = the column containing the values to split
     separator = the symbol used to perform the split
     returns: a dataframe with each entry for the target column separated, with each element moved into a new row. 
     The values in the other columns are duplicated across the newly divided rows.
+    Thanks to James Allen, https://gist.github.com/jlln/338b4b0b55bd6984f883
     '''
     def splitListToRows(row,row_accumulator,target_column,separator):
         split_row = row[target_column].split(separator)
@@ -85,9 +106,9 @@ ancestral_iq2 = splitDataFrameList(ancestral_iq,'Origin', '/')
 
 ancestral_iq_group = ancestral_iq2.groupby('Origin').mean()
 pprint(ancestral_iq_group)
+ancestral_count = ancestral_iq2.groupby('Origin').count()
+pprint(ancestral_count)
 
-
-# pprint('Ancestral IQ: ' + str(staten['obey'].mean()))
 
 
 # pprint(manhattan.count())
