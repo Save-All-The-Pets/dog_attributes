@@ -56,8 +56,17 @@ edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib.set_index('Br
 print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean())
 print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std())
 
-# Which ancestral homeland has the smartest/most obedient dogs?
 ancestral = wiki[['Breed', 'Origin']]
+
+# Looking at the UK and Ireland
+ancestral_uk_ire = ancestral.copy()
+ancestral_uk_ire.dropna()
+ancestral_uk_ire = ancestral_uk_ire[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
+ancestral_uk_ire = ancestral_uk_ire.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
+ancestral_uk_ire_grp = ancestral_uk_ire.groupby('Origin')
+print(ancestral_uk_ire_grp.mean())
+print(ancestral_uk_ire_grp.std())
+print(ancestral_uk_ire_grp.count())
 
 # Combining Scotland, Wales, and England as United Kingdom
 ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)

@@ -1,15 +1,15 @@
 ,Breed,Turcsan,Coren
-0,Akita,"('Dalmatian', 54)",
+0,Akita,"('Brittany', 54)",
 1,Bernese Mountain Dog,,
 2,Bloodhound,"('Ibizan Hound', 55)",
 3,Borzoi,"('Boxer', 55)",
 4,Bullmastiff,"('Staffordshire Bull Terrier', 62)",
 5,Great Dane,,
 6,Great Pyrenees,"('Great Dane', 67)",
-7,Great Swiss Mountain Dog,"('Greater Swiss Mountain Dog', 96)","('Great Dane', 86)"
+7,Greater Swiss Mountain Dog,,"('Bernese Mountain Dog', 71)"
 8,Irish Wolfhound,,
 9,Kuvasz,"('Jack Russell Terrier', 45)",
-10,Otter Hound,"('Bavarian Mountain Hound', 86)","('Otterhound', 95)"
+10,Otter Hound,"('Bavarian Mountain Hound', 86)",
 11,Rottweiler,,
 12,Afghan Hound,"('Bavarian Mountain Hound', 86)",
 13,Alaskan Malamute,,
@@ -17,14 +17,14 @@
 15,Beauceron,,"('Beagle', 60)"
 16,Belgian Malinois,,
 17,Belgian Sheepdog,"('Shetland Sheepdog', 79)",
-18,Belgian Tervuren,"('Tibetan Terrier', 65)","('Bedlington Terrier', 65)"
+18,Belgian Tervuren,"('Tibetan Terrier', 65)","('Tibetan Terrier', 65)"
 19,Black and Tan Coonhound,"('Ibizan Hound', 65)",
-20,Black Russian Terrier,"('Bull Terrier', 86)","('Bull Terrier', 86)"
+20,Black Russian Terrier,"('Border Terrier', 86)","('Border Terrier', 86)"
 21,Bouvier des Flandres,"('Pointer', 51)",
 22,Boxer,,
 23,Briard,,
 24,Chesapeake Bay Retriever,"('Golden Retriever', 86)",
-25,Clumber Spaniel,"('American Cocker Spaniel', 86)",
+25,Clumber Spaniel,"('Cavalier King Charles Spaniel', 86)",
 26,Curly Coated Retriever,"('Flat-Coated Retriever', 84)",
 27,Doberman Pinscher,,
 28,English Foxhound,"('Irish Wolfhound', 65)",
@@ -35,7 +35,7 @@
 33,Giant Schnauzer,,
 34,Golden Retriever,,
 35,Gordon Setter,,
-36,Greyhound,"('Irish Wolfhound', 50)",
+36,Greyhound,"('Bavarian Mountain Hound', 50)",
 37,Irish Setter,,
 38,Komondor,"('Kromfohrlander', 64)","('Norwegian Elkhound', 53)"
 39,Labrador Retriever,"('Labrador Retriever Leonberger', 90)",
@@ -68,24 +68,24 @@
 66,Border Collie,,
 67,Bulldog,,
 68,Bull Terrier,,
-69,Canaan Dog,"('Entlebucher Mountain Dog', 86)","('Bernese Mountain Dog', 86)"
-70,Shar Pei,"('Shar-Pei', 100)","('Chinese Shar Pei', 90)"
+69,Canaan Dog,"('Greater Swiss Mountain Dog', 86)","('Australian Cattle Dog', 86)"
+70,Shar Pei,,
 71,Chow Chow,"('Hovawart', 48)",
-72,Cocker Spaniel,"('American Cocker Spaniel', 90)",
+72,Cocker Spaniel,"('English Cocker Spaniel', 90)",
 73,English Springer Spaniel,"('English Setter', 86)",
-74,Field Spaniel,"('American Cocker Spaniel', 86)",
+74,Field Spaniel,"('Cavalier King Charles Spaniel', 86)",
 75,Flat-Coated Retriever,,
 76,Finnish Spitz,"('Shih Tzu', 56)",
 77,Ibizan Hound,,
 78,Irish Terrier,,
 79,Irish Water Spaniel,"('Cavalier King Charles Spaniel', 86)",
-80,Keeshond,"('Beauceron', 47)",
-81,Kerry Blue Terrier,"('Bull Terrier', 86)",
+80,Keeshond,"('Dachshund', 47)",
+81,Kerry Blue Terrier,"('American Staffordshire Terrier', 86)",
 82,Norwegian Elkhound,"('Ibizan Hound', 68)",
-83,Nova Scotia Duck Tolling Retriever,"('Golden Retriever', 86)","('Golden Retriever', 86)"
+83,Nova Scotia Duck Tolling Retriever,"('Flat-Coated Retriever', 86)","('Labrador Retriever', 86)"
 84,Petit Basset Griffon Vendeen,"('Gordon Setter', 53)",
 85,Pharaoh Hound,"('Bavarian Mountain Hound', 86)",
-86,Plott Hound,"('Bavarian Mountain Hound', 86)","('Otterhound', 76)"
+86,Plott Hound,"('Bavarian Mountain Hound', 86)","('Otter Hound', 82)"
 87,Pointer,,
 88,Polish Lowland Sheepdog,,"('Shetland Sheepdog', 75)"
 89,Portuguese Water Dog,"('Pug', 60)",
@@ -95,33 +95,33 @@
 93,Soft-Coated Wheaten Terrier,,
 94,Staffordshire Bull Terrier,,
 95,Standard Schnauzer,,
-96,Sussex Spaniel,"('American Cocker Spaniel', 86)","('Welsh Springer Spaniel', 86)"
+96,Sussex Spaniel,"('Cavalier King Charles Spaniel', 86)","('Welsh Springer Spaniel', 86)"
 97,Vizsla,,
 98,Welsh Springer Spaniel,"('Welsh Terrier', 86)",
 99,Wirehaired Pointing Griffon,"('German Wirehaired Pointer', 73)",
-100,American Eskimo,"('American Cocker Spaniel', 86)","('American Staffordshire Terrier', 86)"
-101,Australian Terrier,"('Bull Terrier', 86)",
+100,American Eskimo,"('American Staffordshire Terrier', 86)","('American Staffordshire Terrier', 86)"
+101,Australian Terrier,"('American Staffordshire Terrier', 86)",
 102,Basenji,"('Beauceron', 50)",
 103,Beagle,,
-104,Bedlington Terrier,"('Bull Terrier', 86)",
+104,Bedlington Terrier,"('American Staffordshire Terrier', 86)",
 105,Bichon Frise,"('Cairn Terrier', 48)",
 106,Border Terrier,,
-107,Boston Terrier,"('Parson Russell Terrier', 86)",
+107,Boston Terrier,"('German Hunting Terrier', 86)",
 108,Brussels Griffon,"('Jack Russell Terrier', 50)",
 109,Cairn Terrier,,
 110,Cardigan Welsh Corgi,"('Welsh Terrier', 86)",
 111,Cavalier King Charles Spaniel,,
 112,Coton de Tulear,,"('Gordon Setter', 57)"
 113,Dachshund,,
-114,Dandie Dinmont Terrier,"('Bull Terrier', 86)",
+114,Dandie Dinmont Terrier,"('Border Terrier', 86)",
 115,English Toy Spaniel,"('Cavalier King Charles Spaniel', 86)","('Cavalier King Charles Spaniel', 86)"
-116,Fox Terrier Smooth,"('Bull Terrier', 86)","('Fox Terrier', 90)"
-117,Fox Terrier,"('Parson Russell Terrier', 86)",
+116,Fox Terrier Smooth,"('American Staffordshire Terrier', 86)","('Fox Terrier', 90)"
+117,Fox Terrier,"('German Hunting Terrier', 86)",
 118,French Bulldog,,
 119,German Pinscher,"('Doberman Pinscher', 88)","('Doberman Pinscher', 88)"
 120,Lakeland Terrier,"('American Staffordshire Terrier', 86)",
-121,Manchester Terrier,"('Bull Terrier', 86)",
-122,Manchester Terrier,"('Bull Terrier', 86)",
+121,Manchester Terrier,"('American Staffordshire Terrier', 86)",
+122,Manchester Terrier,"('American Staffordshire Terrier', 86)",
 123,Pug,,
 124,Puli,"('Polish Lowland Sheepdog', 68)",
 125,Schipperke,"('Whippet', 59)",
@@ -130,9 +130,9 @@
 128,Shetland Sheepdog,,
 129,Shiba Inu,,
 130,Shih Tzu,,
-131,Silky Terrier,"('Parson Russell Terrier', 86)","('Australian Silky Terrier', 90)"
-132,Skye Terrier,"('Parson Russell Terrier', 86)",
-133,Tibetan Spaniel,"('American Cocker Spaniel', 86)",
+131,Silky Terrier,"('German Hunting Terrier', 86)","('Australian Silky Terrier', 90)"
+132,Skye Terrier,"('German Hunting Terrier', 86)",
+133,Tibetan Spaniel,"('Cavalier King Charles Spaniel', 86)",
 134,Tibetan Terrier,,
 135,Welsh Terrier,,
 136,West Highland White Terrier,"('West Highland Wheaten Terrier', 93)",
