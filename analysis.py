@@ -11,17 +11,17 @@ nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 
 edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
-iq = turcsan = pd.read_csv('dogdata/turcsan.csv')
+attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 
-#iq = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='inner')
+#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='inner')
 
 
 # Canine intelligence by AKC Groupings
 wiki_pared = wiki[['Breed', 'AKC']]
-akc_groups_iq = wiki_pared.set_index('Breed').join(iq.set_index('Breed'), how='left')
-akc = akc_groups_iq.groupby('AKC').mean()
+akc_groups_attrib = wiki_pared.set_index('Breed').join(attrib.set_index('Breed'), how='left')
+akc = akc_groups_attrib.groupby('AKC').mean()
 pprint(akc)
-akc_count = akc_groups_iq.groupby('AKC').count()
+akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
 
 # Make the census columns understandable
@@ -38,63 +38,44 @@ age_65_74 = 'VC23'; age_75_over = 'VC24'
 # Strip out dirty values
 nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: '' if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
 
-nyc_iq = nyc_registry.set_index('BreedName').join(iq.set_index('Breed'), how='left')
+nyc_attrib = nyc_registry.set_index('BreedName').join(attrib.set_index('Breed'), how='left')
 
-#Redo this section, which is inefficient
-# queens = nyc_iq[nyc_iq['Borough'] == 'Queens']
-# manhattan = nyc_iq[nyc_iq['Borough'] == 'Manhattan']
-# brooklyn = nyc_iq[nyc_iq['Borough'] == 'Brooklyn']
-# bronx = nyc_iq[nyc_iq['Borough'] == 'Bronx']
-# staten = nyc_iq[nyc_iq['Borough'] == 'Staten Island']
-
-# print('Queens: ' + str(queens['obey'].mean()))
-# print('Manhattan: ' + str(manhattan['obey'].mean()))
-# print('Brooklyn: ' + str(brooklyn['obey'].mean()))
-# print('Bronx: ' + str(bronx['obey'].mean()))
-# print('Staten Island: ' + str(staten['obey'].mean()))
-# print('NYC Overall: ' + str(nyc_iq['obey'].mean()))
-
-# print('Queens Standard Deviation: ' + str(queens['obey'].std()))
-# print('Manhattan Standard Deviation: ' + str(manhattan['obey'].std()))
-# print('Brooklyn Standard Deviation: ' + str(brooklyn['obey'].std()))
-# print('Bronx Standard Deviation: ' + str(bronx['obey'].std()))
-# print('Staten Island Standard Deviation: ' + str(staten['obey'].std()))
-# print('NYC Overall Standard Deviation: ' + str(nyc_iq['obey'].std()))
-
-nyc_iq_t = nyc_registry.set_index('BreedName').join(turcsan.set_index('Breed'), how='left')
-nyc_iq_t_g = nyc_iq_t.groupby('Borough').mean()
-pprint(nyc_iq_t_g)
+nyc_attrib_t = nyc_registry.set_index('BreedName').join(turcsan.set_index('Breed'), how='left')
+nyc_attrib_t_g = nyc_attrib_t.groupby('Borough').mean()
+pprint(nyc_attrib_t_g)
 
 # Adelaide
-adelaide_iq = adelaide_registry.set_index('AnimalBreed').join(iq.set_index('Breed'), how='left')
-print('Adelaide: ' + str(adelaide_iq['obey'].mean()))
-print('Adelaide Standard Deviation: ' + str(adelaide_iq['obey'].std()))
+adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib.set_index('Breed'), how='left')
+
+print('Adelaide')
+print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean())
+print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std())
 
 # Edmonton
-edmonton_iq = edmonton_registry.set_index('BREED').join(iq.set_index('Breed'), how='left')
-print('Edmonton: ' + str(edmonton_iq['obey'].mean()))
-print('Edmonton Standard Deviation: ' + str(edmonton_iq['obey'].std()))
+print('Edmonton')
+edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib.set_index('Breed'), how='left')
+print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean())
+print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std())
 
 # Which ancestral homeland has the smartest/most obedient dogs?
 ancestral = wiki[['Breed', 'Origin']]
 
-# Only looking at the UK and Ireland
 ancestral_uk_ire = ancestral.copy()
 ancestral_uk_ire.dropna()
 ancestral_uk_ire = ancestral_uk_ire.loc[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
-ancestral_uk_ire_iq = ancestral_uk_ire.set_index('Breed').join(iq.set_index('Breed'), how='inner')
-ancestral_uk_ire_iq_group = ancestral_uk_ire_iq.groupby('Origin').mean()
+ancestral_uk_ire_attrib = ancestral_uk_ire.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
+ancestral_uk_ire_attrib_group = ancestral_uk_ire_attrib.groupby('Origin').mean()
 print('UK and Ireland only')
-pprint(ancestral_uk_ire_iq_group)
-ancestral_uk_ire_std = ancestral_uk_ire_iq.groupby('Origin').std()
+pprint(ancestral_uk_ire_attrib_group)
+ancestral_uk_ire_std = ancestral_uk_ire_attrib.groupby('Origin').std()
 pprint(ancestral_uk_ire_std)
-ancestral_uk_ire_count = ancestral_uk_ire_iq.groupby('Origin').count()
+ancestral_uk_ire_count = ancestral_uk_ire_attrib.groupby('Origin').count()
 pprint(ancestral_uk_ire_count)
 
 # Combining Scotland, Wales, and England as United Kingdom
 ancestral2 = ancestral.copy()
 ancestral2['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
-ancestral_iq = ancestral2.set_index('Breed').join(iq.set_index('Breed'), how='inner')
+ancestral_attrib = ancestral2.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
 
 # Take cells with multiple countries and split them into separate countries
 def splitDataFrameList(df,target_column,separator):
@@ -116,17 +97,17 @@ def splitDataFrameList(df,target_column,separator):
     new_df = pd.DataFrame(new_rows)
     return new_df
 
-ancestral_iq.dropna(inplace=True)
-ancestral_iq2 = splitDataFrameList(ancestral_iq,'Origin', '/')
+ancestral_attrib.dropna(inplace=True)
+ancestral_attrib2 = splitDataFrameList(ancestral_attrib,'Origin', '/')
 
-ancestral_iq_group = ancestral_iq2.groupby('Origin').mean()
-pprint(ancestral_iq_group)
-ancestral_count = ancestral_iq2.groupby('Origin').count()
+ancestral_attrib_group = ancestral_attrib2.groupby('Origin').mean()
+pprint(ancestral_attrib_group)
+ancestral_count = ancestral_attrib2.groupby('Origin').count()
 pprint(ancestral_count)
 
-
 wiki_breeds = set(wiki['Breed'].tolist())
-coren_breeds = set(iq['Breed'].tolist())
+coren_breeds = set(coren['Breed'].tolist())
+turcsan_breeds = set(turcsan['Breed'].tolist())
 
 print('Intersection')
 print(wiki_breeds & coren_breeds)
@@ -139,7 +120,7 @@ print(coren_breeds - wiki_breeds)
 
 # pprint(nyc_registry.head())
 # pprint(nyc_census.head())
-# pprint(iq.head())
+# pprint(attrib.head())
 # pprint(edmonton_registry.head())
 # pprint(adelaide_registry.head())
 # pprint(wiki.head())
