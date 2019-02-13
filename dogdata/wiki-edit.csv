@@ -29,7 +29,7 @@
 27,Working,Group 6 (Utility),Doberman Pinscher,Group 3 – Working Dogs,short coat,blackredbluefawn,"Group 2, Section 1.1 Pinscher #143",68 to 72 centimetres (27 to 28 in),Utility,Germany,Guardian Dog,https://en.wikipedia.org/wiki/Doberman_Pinscher,40–45 kilograms (88–99 lb),5c63005548c81a677cfa06ef
 28,Hound,Group 4 (Hounds),English Foxhound,Group 2 - Hounds,,,"Group 6, Section 1.1 Scenthounds: Large #159",23–25 inches (58–64 cm),Hound,England,Scenthounds,https://en.wikipedia.org/wiki/English_Foxhound,,5c63005548c81a677cfa06f0
 29,Sporting,Group 3 (Gundogs),English Setter,Group 1 – Sporting Dogs,,,"Group 7, Section 2.2 Setter #2",,Gundog,England,Gun Dog,https://en.wikipedia.org/wiki/English_Setter,,5c63005948c81a677cfa06f1
-30,Herding,Group 5 – Working Dogs,German Shepherd Dog,Group 7 – Herding Dogs,Double coat,,"Group 1 Herding dogs, Section 1 Sheepdogs #166;Long-haired 166a;Short-haired 166b",60–65 cm (24–26 in)[2],Working,Germany,Herding Dog,https://en.wikipedia.org/wiki/German_Shepherd_Dog,30–40 kg (66–88 lb)[2],5c63005a48c81a677cfa06f2
+30,Herding,Group 5 – Working Dogs,German Shepherd,Group 7 – Herding Dogs,Double coat,,"Group 1 Herding dogs, Section 1 Sheepdogs #166;Long-haired 166a;Short-haired 166b",60–65 cm (24–26 in)[2],Working,Germany,Herding Dog,https://en.wikipedia.org/wiki/German_Shepherd_Dog,30–40 kg (66–88 lb)[2],5c63005a48c81a677cfa06f2
 31,Sporting,Group 3 (Gundogs),German Shorthaired Pointer,Group 1 - Sporting Dogs,,,"Group 7, Section 1.1 Continental Pointing Dogs: Pointer type #119",,Gundog,Germany,Gun Dog,https://en.wikipedia.org/wiki/German_Shorthaired_Pointer,,5c63005a48c81a677cfa06f3
 32,Sporting,Group 3 (Gundogs),German Wirehaired Pointer,Group 1 - Sporting Dogs,,,"Group 7, Section 1.1 Continental Pointing Dogs: Pointer type #98",,Gundog,Germany,Gun Dog,https://en.wikipedia.org/wiki/German_Wirehaired_Pointer,,5c63005a48c81a677cfa06f4
 33,Working,Group 6 (Utility),Giant Schnauzer,Group 3 (Working),"Dense, wiry","Black or ""pepper and salt""","Group 2, Section 1.2 Schnauzer #181",65–70 cm (25.5–27.5 in)[4],Utility,Germany,Guardian Dog,https://en.wikipedia.org/wiki/Giant_Schnauzer,35–47 kg (77–104 lb)[3],5c63005a48c81a677cfa06f5
@@ -40,13 +40,25 @@
 38,Working,Group 5 (Working Dogs),Komondor,Group 3 - Working Dogs,,,"Group 1 Herding dogs, Section 1 Sheepdogs #53",,Working,Hungary,Guardian Dog,https://en.wikipedia.org/wiki/Komondor,,5c63005f48c81a677cfa06fa
 39,Sporting,Group 3 (Gundogs),Labrador Retriever,Group 1 – Sporting,,,"Group 8, Section 1 Retrievers #122",,Gundogs,United Kingdom/Canada,Gun Dog,https://en.wikipedia.org/wiki/Labrador_Retriever,65–80 lb (29–36 kg)[2],5c63006348c81a677cfa06fb
 40,Herding,Working Group,Old English Sheepdog,Group 7 - Herding Dogs,,,"Group 1 Herding dogs, Section 1 Sheepdogs #16",,Working,England,Herding Dog,https://en.wikipedia.org/wiki/Old_English_Sheepdog,,5c63006348c81a677cfa06fc
-41,Non-Sporting,,Standard Poodle,,,,,,,France/Germany,,https://en.wikipedia.org/wiki/Standard_Poodle,,5c63006348c81a677cfa06fd
+41,Non-Sporting,,Poodle,,,,,,,France/Germany,Gun Dogs,https://en.wikipedia.org/wiki/Poodle,,5c63006348c81a677cfa06fd
+133,Non-Sporting,,Miniature Poodle,,,,,,,France/Germany,Companion Dogs,https://en.wikipedia.org/wiki/Poodle,,input1
+134,Toy,,Toy Poodle,,,,,,,France/Germany,Companion Dogs,https://en.wikipedia.org/wiki/Poodle,,input2
+135,Toy,,Lhasa Apso,,,,,,,Tibet,,,,input3
+136,Terrier,,Jack Russell Terrier,,,,,,,England,,,,
+137,Toy,,Pekingese,,,,,,,China,,,,
+138,Toy,,Maltese,,,,,,,Italy,,,,
+139,Sporting,,Brittany,,,,,,,France,,,,
+140,Working,,Newfoundland,,,,,,,Canada,,,,
+141,Working,,Saint Bernard,,,,,,,Italy/Switzerland,,,,
+142,Toy,,Pomeranian,,,,,,,Poland/Germany,,,,
+143,Non-Sporting,,Dalmatian,,,,,,,Croatia,,,,
+144,Toy,,Chihuahua,,,,,,,Mexico,,,,
 42,Hound,Group 4 (hounds),Rhodesian Ridgeback,Group 2 - hounds,"Short and dense, sleek and glossy in appearance",,"Group 6, Section 3 Related breeds #146",63–69 cm (25–27 in),Hounds,Southern Africa,Sighthound & Pariah,https://en.wikipedia.org/wiki/Rhodesian_Ridgeback,36.5 kg (80 lb),5c63006348c81a677cfa06fe
 43,Hound,Group 4 (Hounds),Scottish Deerhound,Group 2 - Hounds,Wiry,"Blue, brindle, fawn, gray, red, yellow","Group 10, Section 2 Rough-haired Sighthounds #164",30-32 inches,Hounds,Scotland,Sighthound & Pariah,https://en.wikipedia.org/wiki/Scottish_Deerhound,85–110 lb (39–50 kg),5c63006348c81a677cfa06ff
 44,Sporting,Group 3 (Gundogs),Spinone Italiano,Sporting,,,"Group 7, Section 1.3 Continental Pointing Dogs: Griffon type #165",,Gundog,Italy,Gun Dog Breeds,https://en.wikipedia.org/wiki/Spinone_Italiano,,5c63006748c81a677cfa0700
 45,Working,Group 6 (Utility),Tibetan Mastiff,Working,,,"Group 2, Section 2.2 Molossian: Mountain type #230",,Utility,Tibet,Guardian Dog,https://en.wikipedia.org/wiki/Tibetan_Mastiff,,5c63006748c81a677cfa0701
 46,Sporting,Group 3 (Gun dogs),Weimaraner,Group 1 - Sporting/gundog,,,"Group 7, Section 1.1 Continental Pointing Dogs: Pointer type #99",59–70 cm (23–28 in),Gundogs,Germany,Gun .nsf/Breeds/WeimaranerRevisedJanuary12010,https://en.wikipedia.org/wiki/Weimaraner,30–40 kg (66–88 lb),5c63006848c81a677cfa0702
-47,Terrier,Group 2 - (Terriers),Airdale Terrier,Group 4 - (Terriers),Broken,"Black saddle with tan ears, legs, and head; dark grizzle saddle (black mixed with gray and white)","Group 3 Terriers, Section 1 Large/medium-sized #7",22–24 inches (56–61 cm),Terrier,United Kingdom,Terriers,https://en.wikipedia.org/wiki/Airdale_Terrier,40–50 pounds (18–23 kg),5c63006848c81a677cfa0703
+47,Terrier,Group 2 - (Terriers),Airedale Terrier,Group 4 - (Terriers),Broken,"Black saddle with tan ears, legs, and head; dark grizzle saddle (black mixed with gray and white)","Group 3 Terriers, Section 1 Large/medium-sized #7",22–24 inches (56–61 cm),Terrier,United Kingdom,Terriers,https://en.wikipedia.org/wiki/Airdale_Terrier,40–50 pounds (18–23 kg),5c63006848c81a677cfa0703
 48,Terrier,Group 2 - (Terriers),American Staffordshire Terrier,Group 4 - Terrier,Smooth,"Any color, solid, part or patched(All-white, 80%+ white, black and tan, and liver are not to be encouraged)","Group 3 Terriers, Section 3 Bull type #286",18–20 in (46–51 cm),Terrier,United States,,https://en.wikipedia.org/wiki/American_Staffordshire_Terrier,50–80 lb (23–36 kg),5c63006848c81a677cfa0704
 49,Sporting,,American Water Spaniel,Sporting,"Double coated, curly exterior layer",Shades of brown,"Group 8, Section 3 Water Dogs #301",15–18 inches (38–46 cm),,United States,Gun Dog,https://en.wikipedia.org/wiki/American_Water_Spaniel,25–40 lb (11–18 kg),5c63006c48c81a677cfa0705
 50,Herding,Group 5 – Working,Australian Cattle Dog,Group 7 – Herding,short double coat,"blue, blue mottled, blue speckled, red mottled, red speckled","Group 1 Herding dogs, Section 2 Cattle Dogs #287",46–51 cm (18–20 in),Working,Australia,Herding dog,https://en.wikipedia.org/wiki/Australian_Cattle_Dog,15–22 kg (33–49 lb),5c63006c48c81a677cfa0706
@@ -74,7 +86,7 @@
 72,Hound,Group 4 (Hounds),Petit Basset Griffon Vendeen,Group 2-(Hounds),"rough, medium length",,"Group 6, Section 1.3 Scenthounds: Small #67",34–38 cm (13–15 in),Hound,France,Scenthound,https://en.wikipedia.org/wiki/Petit_Basset_Griffon_Vendeen,,5c63008648c81a677cfa071c
 73,Hound,Group 4 (Hounds),Pharaoh Hound,Group 2 (Hounds),,,"Group 5 Spitz and Primitive dogs, Section 6 Primitive type #248",,Hounds,Malta,Sighthound & Pariah,https://en.wikipedia.org/wiki/Pharaoh_Hound,,5c63008648c81a677cfa071d
 74,Hound,,Plott Hound,,,,,,,Germany/United States,Scenthound Group,https://en.wikipedia.org/wiki/Plott_Hound,,5c63008648c81a677cfa071e
-75,Sporting,Group 3 (Gundogs),Pointer (dog breed),Group 1 – Sporting Dogs,,,"Group 7, Section 2.1 Pointer #1",,Gundog,England,Gun Dogs,https://en.wikipedia.org/wiki/Pointer_(dog_breed),,5c63008648c81a677cfa071f
+75,Sporting,Group 3 (Gundogs),Pointer,Group 1 – Sporting Dogs,,,"Group 7, Section 2.1 Pointer #1",,Gundog,England,Gun Dogs,https://en.wikipedia.org/wiki/Pointer_(dog_breed),,5c63008648c81a677cfa071f
 76,Herding,Group 5 (Working),Polish Lowland Sheepdog,Group 7 - Herding,,,"Group 1 Herding dogs, Section 1 Sheepdogs #251",,Working,Poland,Herding Dogs,https://en.wikipedia.org/wiki/Polish_Lowland_Sheepdog,,5c63008a48c81a677cfa0720
 77,Working,Group 6 (Utility),Portuguese Water Dog,Group 3 - Working dogs,curly or wavy,,"Group 8, Section 3 Water Dogs #37",50–57 cm (20–22 in),Utility,Portugal,Gun Dogs,https://en.wikipedia.org/wiki/Portuguese_Water_Dog,19–27 kg (42–60 lb),5c63008a48c81a677cfa0721
 78,Hound,,Redbone Coonhound,,Short and dense,"Solid red, although small amount of white is allowed on feet or chest",,21 to 27 inches,,United States,Scenthounds,https://en.wikipedia.org/wiki/Redbone_Coonhound,45 to 70 lb (20 to 32 kg),5c63008a48c81a677cfa0722

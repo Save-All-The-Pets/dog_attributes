@@ -1,6 +1,7 @@
 import time
 from pprint import pprint
 import pandas as pd
+import sys
 from fuzzywuzzy import fuzz
 import re
 
@@ -110,12 +111,17 @@ ancestral_count = ancestral_iq2.groupby('Origin').count()
 pprint(ancestral_count)
 
 
+wiki_breeds = set(wiki['Breed'].tolist())
+coren_breeds = set(iq['Breed'].tolist())
+
+print('Intersection')
+print(wiki_breeds & coren_breeds)
+print('Difference')
+print(wiki_breeds - coren_breeds)
+print(coren_breeds - wiki_breeds)
 
 # pprint(manhattan.count())
 # pprint(staten.count())
-
-# Sometimes centimeters are first and sometimes inches are first
-# wiki['Height'] = wiki['Height'].apply(lambda x: re.search(r'\d+', x).group())
 
 # pprint(nyc_registry.head())
 # pprint(nyc_census.head())
