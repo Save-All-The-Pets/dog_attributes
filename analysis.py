@@ -60,18 +60,30 @@ ancestral = wiki[['Breed', 'Origin']]
 ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x == 'England' or x == 'Wales' or x == 'Scotland' else x)
 ancestral_iq = ancestral.set_index('Breed').join(iq.set_index('Breed'), how='inner')
 # Take cells with multiple countries and split them into separate countries
-for i in ancestral_iq:
-    pprint(i['Origin'])
-    if '/' in i['Origin']:
-        s = i['Origin'].split('/')
-        for j in s:
-            new_row = i['Origin'].copy()
-            new_row['Origin'] = j
-            ancestral_iq.append(new_row)
-        ancestral_iq.drop(i)
 
 
-ancestral_iq_group = ancestral_iq.groupby('Origin').mean()
+def splitDataFrameList(df,target_column,separator):
+    ''' df = dataframe to split,
+    target_column = the column containing the values to split
+    separator = the symbol used to perform the split
+    returns: a dataframe with each entry for the target column separated, with each element moved into a new row. 
+    The values in the other columns are duplicated across the newly divided rows.
+    '''
+    def splitListToRows(row,row_accumulator,target_column,separator):
+        split_row = row[target_column].split(separator)
+        for s in split_row:
+            new_row = row.to_dict()
+            new_row[target_column] = s
+            row_accumulator.append(new_row)
+    new_rows = []
+    df.apply(splitListToRows,axis=1,args = (new_rows,target_column,separator))
+    new_df = pd.DataFrame(new_rows)
+    return new_df
+
+ancestral_iq.dropna(inplace=True)
+ancestral_iq2 = splitDataFrameList(ancestral_iq,'Origin', '/')
+
+ancestral_iq_group = ancestral_iq2.groupby('Origin').mean()
 pprint(ancestral_iq_group)
 
 
