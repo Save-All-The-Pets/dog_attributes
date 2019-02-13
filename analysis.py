@@ -7,7 +7,7 @@ from fuzzywuzzy import process
 import re
 
 nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
-coren = pd.read_csv('dogdata/dog_intelligence-edit.csv')
+coren = pd.read_csv('dogdata/coren-edit.csv')
 nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 2016 data
 edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
@@ -33,8 +33,6 @@ age_5_17 = 'VC17'; age_18_24 = 'VC18'
 age_25_34 = 'VC19'; age_35_44 = 'VC20'
 age_45_54 = 'VC21'; age_55_64 = 'VC22'
 age_65_74 = 'VC23'; age_75_over = 'VC24'
-
-
 
 # Strip out dirty values
 nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: '' if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
