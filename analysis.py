@@ -22,7 +22,7 @@ nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 
 edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
 adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
-attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
+turcsan = pd.read_csv('dogdata/turcsan.csv')
 
 coren = coren[['Breed', 'Obedient']]
 attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
@@ -65,6 +65,22 @@ pprint(akc_std)
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
 
+fig, ax = plt.subplots()
+plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor') 
+ax.plot(akc.index, akc['Bold'])
+ax.plot(akc.index, akc['Calm'])
+ax.plot(akc.index, akc['Obedient'])
+ax.plot(akc.index, akc['Sociable'])
+ax.plot(akc.index, akc['Trainable'])
+
+plt.gcf().subplots_adjust(bottom=0.3, right=.75)
+plt.legend(loc=(1.04,0.6))
+plt.title('Scores by AKC Grouping')
+ax.set_ylabel('Score')
+ax.set_xlabel('AKC Grouping')
+plt.show()
+
+
 # # Make the census columns understandable
 # val = 'EST_'
 # err = 'MOE_'
@@ -99,8 +115,9 @@ ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Obedient'])
 ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Sociable'])
 ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Trainable'])
 
-plt.gcf().subplots_adjust(bottom=0.3)
-plt.legend()
+plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor') 
+plt.gcf().subplots_adjust(bottom=0.3, right=.75)
+plt.legend(loc=(1.04,0.6))
 plt.title('Scores by Borough in NYC')
 ax.set_ylabel('Score')
 ax.set_xlabel('Borough')
@@ -129,24 +146,6 @@ contingency_table = pd.crosstab(nyc_breeds_5['BreedName'], nyc_breeds_5['Borough
 nyc_chi2 = stats.chi2_contingency(contingency_table)
 print('\nTest statistic: {}'.format(nyc_chi2[0].round(2)))
 print('P-value: {}'.format(nyc_chi2[1]))
-
-
-''' Do a stacked bar chart?
-        #Assigns the frequency values
-        malecount = contingency_table.iloc[0][0:6].values
-        femalecount = contingency_table.iloc[1][0:6].values
-
-        #Plots the bar chart
-        fig = plt.figure(figsize=(10, 5))
-        sns.set(font_scale=1.8)
-        categories = ["0-9","10-19","20-29","30-39","40-49","50+"]
-        p1 = plt.bar(categories, malecount, 0.55, color='#d62728')
-        p2 = plt.bar(categories, femalecount, 0.55, bottom=malecount)
-        plt.legend((p2[0], p1[0]), ('Male', 'Female'))
-        plt.xlabel('Hours per Week Worked')
-        plt.ylabel('Count')
-        plt.show()
-        '''
 
 # Adelaide
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
@@ -186,8 +185,9 @@ ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Obedient'])
 ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Sociable'])
 ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Trainable'])
 
-plt.gcf().subplots_adjust(bottom=0.3)
-plt.legend()
+plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor') 
+plt.gcf().subplots_adjust(bottom=0.3, right=.75)
+plt.legend(loc=(1.04,0.6))
 plt.title('Scores by UK and Ireland Territory')
 ax.set_ylabel('Score')
 ax.set_xlabel('Territory')
@@ -245,8 +245,9 @@ ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Ob
 ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Sociable'])
 ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Trainable'])
 
-plt.gcf().subplots_adjust(bottom=0.3)
-plt.legend()
+plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor') 
+plt.gcf().subplots_adjust(bottom=0.3, right=.75)
+plt.legend(loc=(1.04,0.6))
 plt.title('Scores by Country of Ancestry')
 ax.set_ylabel('Score')
 ax.set_xlabel('Country')
