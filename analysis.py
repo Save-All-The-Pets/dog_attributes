@@ -2,7 +2,6 @@ import time
 from pprint import pprint
 import pandas as pd
 import sys
-from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 import re
 
@@ -14,14 +13,20 @@ adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.cs
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
 attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 
-#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='inner')
+#coren = coren[['Breed', 'obey']]
+#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
+lst = ['Calm', 'Trainable', 'Sociable', 'Bold']
 
 # Canine attributes by AKC Groupings
-wiki_pared = wiki[['Breed', 'AKC']]
-akc_groups_attrib = wiki_pared.set_index('Breed').join(attrib.set_index('Breed'), how='left')
+wiki_akc = wiki[['Breed', 'AKC']]
+akc_groups_attrib = wiki_akc.set_index('Breed').join(attrib.set_index('Breed'), how='left')
+print('\nAKC Mean')
 akc = akc_groups_attrib.groupby('AKC').mean().round(decimals=2)
 pprint(akc)
+print('\nAKC Standard Deviation')
+akc_std = akc_groups_attrib.groupby('AKC').std().round(decimals=2)
+pprint(akc_std)
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
 
@@ -51,14 +56,14 @@ pprint(nyc_attrib_t_g.count())
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib.set_index('Breed'), how='left')
 
 print('Adelaide')
-print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean().round(decimals=2))
-print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std().round(decimals=2))
+print(adelaide_attrib[lst].mean().round(decimals=2))
+print(adelaide_attrib[lst].std().round(decimals=2))
 
 # Edmonton
 print('Edmonton')
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib.set_index('Breed'), how='left')
-print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean().round(decimals=2))
-print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std().round(decimals=2))
+print(edmonton_attrib[lst].mean().round(decimals=2))
+print(edmonton_attrib[lst].std().round(decimals=2))
 
 ancestral = wiki[['Breed', 'Origin']]
 
@@ -108,17 +113,19 @@ ancestral_attrib_mean =  ancestral_attrib_grp.mean().round(decimals=2)
 # Only display values where there is more than one dog
 ancestral_attrib_filtered = ancestral_attrib_mean[ancestral_attrib_count['Bold'] > 1]
 
-pprint(ancestral_attrib_grp.std().round(decimals=2))
 pprint(ancestral_attrib_filtered)
+pprint(ancestral_attrib_grp.std().round(decimals=2).dropna())
+pprint(ancestral_attrib_count)
 
 wiki_breeds = set(wiki['Breed'].tolist())
 coren_breeds = set(coren['Breed'].tolist())
 turcsan_breeds = set(turcsan['Breed'].tolist())
 
-print('Intersection')
+print('\nIntersection')
 print(wiki_breeds & turcsan_breeds)
-print('Difference')
+print('\nDifference, Wiki - Turcsan')
 print(wiki_breeds - turcsan_breeds)
+print('\nDifference, Turcsan - Wiki')
 print(turcsan_breeds - wiki_breeds)
 
 comparison = wiki[['Breed']]

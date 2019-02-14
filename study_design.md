@@ -1,5 +1,7 @@
 # Study Design
 
+In this study, I'm negotiating the line between making this data publicly accessible (and fun) and ensuring I'm applying analytic rigor. While this study won't be published in an academic journal, I'm transparently including my code and datasets so that those interested can tweak them and discover their own trends.
+
 ## Variables to evaluate
 
 There are many ways to look at the data. Some of the simple but interesting ones would be looking at the dog intelligence for each grouping of dog--for example, are Hounds or Herding dogs more intelligent? There are many ways to slice this data, but I will rely mainly on the AKC standards in this study. However, I'm capturing other groups (such as the UK standards) in case others want to use this data to look at other relationships. I can also look at the intelligence of each animal grouped by their country of origin. Are certain regions of the world known for having more intelligent dogs? This will be a bit difficult since some countries might only have 1 or 2 dogs that come from the country, making it a result that is not statistically significant. Given enough time to properly clean the data, I will also build on existing research that finds that larger dogs tend to be more intelligent by taking height and weight into account for each dog.
@@ -14,10 +16,11 @@ I've requested voting data for this set, meaning that I will be able to look at 
 
 Genetic markers
 
+Further analyze German dogs, since there are several.
+
 ## Notes on the data
 
 Staten Island census data is unavailable
-Male data was used for dog height and weight
 (For lowest category of dog intelligence, "obey" was not specified. I am assigning a value of 0.10)
 Edmonton had almost no data for 2016 and very little for 2017, so I'm using 2018 data.
 Removing "miniature" from the dataset.
