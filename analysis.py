@@ -77,6 +77,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by AKC Grouping')
 ax.set_ylabel('Score')
 ax.set_xlabel('AKC Grouping')
+plt.savefig('plots/akc.png')
 plt.show()
 
 
@@ -120,6 +121,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by Borough in NYC')
 ax.set_ylabel('Score')
 ax.set_xlabel('Borough')
+plt.savefig('plots/borough.png')
 plt.show()
 
 nyc_breeds = nyc_registry[['Borough', 'BreedName']]
@@ -153,6 +155,8 @@ plt.xlabel('Attributes')
 nyc_attrib_overall = nyc_attrib[lst]
 nyc_attrib_overall = nyc_attrib.mean()
 plt.bar(nyc_attrib_overall.index, nyc_attrib_overall.values)
+plt.savefig('plots/nyc_overall.png')
+
 plt.show()
 
 
@@ -166,6 +170,8 @@ print(adelaide_attrib[lst].std().round(decimals=2))
 
 plt.title('Adelaide Overall Attributes')
 plt.bar(adelaide_attrib_mean.index, adelaide_attrib_mean.values)
+plt.savefig('plots/adelaide_overall.png')
+
 plt.show()
 
 # Edmonton
@@ -178,6 +184,7 @@ print(edmonton_attrib[lst].std().round(decimals=2))
 
 plt.title('Edmonton Overall Attributes')
 plt.bar(edmonton_attrib_mean.index, edmonton_attrib_mean.values)
+plt.savefig('plots/edmonton_overall.png')
 plt.show()
 
 
@@ -211,6 +218,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by UK and Ireland Territory')
 ax.set_ylabel('Score')
 ax.set_xlabel('Territory')
+plt.savefig('plots/uk_ireland.png')
 plt.show()
 
 # Combining Scotland, Wales, and England as United Kingdom
@@ -271,6 +279,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by Country of Ancestry')
 ax.set_ylabel('Score')
 ax.set_xlabel('Country')
+plt.savefig('plots/ancestry.png')
 plt.show()
 
 # data = [ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Bold']]
