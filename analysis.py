@@ -1,6 +1,7 @@
 from pprint import pprint
 import pandas as pd
 import numpy as np
+from scipy import stats
 import sys
 from fuzzywuzzy import process
 import re
@@ -59,8 +60,36 @@ nyc_breeds_grp = nyc_breeds.groupby('Borough')
 pprint(nyc_breeds_grp['BreedName'].value_counts().nlargest(5))
 
 # Perform Chi-Square analysis
-nyc_breeds_5 = nyc_registry[nyc_registry['BreedName']].isin(['Yorkshire Terrier', 'Shih Tzu','Chihuahua','Maltese','Labrador Retriever'])
-contingency_table = pd.crosstab(nyc_breeds_5['BreedName'], nyc_breeds_5['Borough'], margins=True)
+nyc_breeds_5 = nyc_registry[nyc_registry['BreedName'].isin(['Yorkshire Terrier', 'Shih Tzu','Chihuahua','Maltese','Labrador Retriever'])] #top 5 breeds overall
+contingency_table = pd.crosstab(nyc_breeds_5['BreedName'], nyc_breeds_5['Borough'])
+pprint(contingency_table)
+pprint(stats.chi2_contingency(contingency_table))
+'''
+#Calculate expected values
+row_sums = contingency_table.iloc[0:5,5].values
+pprint(row_sums)
+col_sums = contingency_table.iloc[5,0:5].values
+pprint(col_sums)
+total = contingency_table.loc['All', 'All']
+
+f_obs = []
+for i in range(5):
+    f_obs = np.append(f_obs, contingency_table.iloc[i][0:5].values)
+
+f_expected = []
+for j in range(5):
+    for i in col_sums:
+        f_expected.append(i*row_sums[j]/total)
+pprint(f_expected)
+
+chi_squared_statistic = ((f_obs - f_expected)**2/f_expected).sum()
+print('Chi-squared Statistic: ',chi_squared_statistic)
+
+dof = (len(row_sums)-1)*(len(col_sums)-1)
+print('Degrees of Freedom: ',dof)
+pprint(f_obs)
+
+stats.chi2_contingency(f_obs)[0:3]'''
 
 ''' Do a stacked bar chart?
         #Assigns the frequency values
