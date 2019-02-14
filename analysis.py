@@ -4,7 +4,6 @@ import numpy as np
 from scipy import stats
 import sys
 from fuzzywuzzy import process
-import re
 import matplotlib.pyplot as plt
 # import plotly
 # import plotly.plotly as py
@@ -147,19 +146,40 @@ nyc_chi2 = stats.chi2_contingency(contingency_table)
 print('\nTest statistic: {}'.format(nyc_chi2[0].round(2)))
 print('P-value: {}'.format(nyc_chi2[1]))
 
+# NYC Overall 
+plt.title('NYC Overall Attributes')
+plt.ylabel('Score')
+plt.xlabel('Attributes')
+nyc_attrib_overall = nyc_attrib[lst]
+nyc_attrib_overall = nyc_attrib.mean()
+plt.bar(nyc_attrib_overall.index, nyc_attrib_overall.values)
+plt.show()
+
+
 # Adelaide
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
 print('\nAdelaide Mean')
-print(adelaide_attrib[lst].mean().round(decimals=2))
+adelaide_attrib_mean = adelaide_attrib[lst].mean()
+print(adelaide_attrib_mean.round(decimals=2))
 print('\nAdelaide Standard Deviation')
 print(adelaide_attrib[lst].std().round(decimals=2))
+
+plt.title('Adelaide Overall Attributes')
+plt.bar(adelaide_attrib_mean.index, adelaide_attrib_mean.values)
+plt.show()
 
 # Edmonton
 print('\nEdmonton Mean')
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
-print(edmonton_attrib[lst].mean().round(decimals=2))
+edmonton_attrib_mean = edmonton_attrib[lst].mean()
+print(edmonton_attrib_mean.round(decimals=2))
 print('\nEdmonton Standard Deviation')
 print(edmonton_attrib[lst].std().round(decimals=2))
+
+plt.title('Edmonton Overall Attributes')
+plt.bar(edmonton_attrib_mean.index, edmonton_attrib_mean.values)
+plt.show()
+
 
 ancestral = wiki[['Breed', 'Origin']]
 
