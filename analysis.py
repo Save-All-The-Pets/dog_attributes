@@ -13,10 +13,10 @@ adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.cs
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
 attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 
-#coren = coren[['Breed', 'obey']]
-#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
+coren = coren[['Breed', 'Obedience']]
+#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer').copy()
 
-lst = ['Calm', 'Trainable', 'Sociable', 'Bold']
+lst = ['Calm', 'Trainable', 'Sociable', 'Bold'] # 'Obedience'
 
 # Canine attributes by AKC Groupings
 wiki_akc = wiki[['Breed', 'AKC']]
@@ -41,6 +41,7 @@ age_65_74 = 'VC23'; age_75_over = 'VC24'
 
 # Strip out dirty values
 nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: None if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
+nyc_registry['BreedName'] = nyc_registry['BreedName'].map(lambda x: None if x == 'Unknown' else x)
 nyc_registry.dropna(inplace=True)
 
 nyc_attrib = nyc_registry.set_index('BreedName').join(attrib.set_index('Breed'), how='left')
@@ -50,6 +51,11 @@ nyc_attrib_t_g = nyc_attrib_t.groupby('Borough')
 pprint(nyc_attrib_t_g.mean().round(decimals=2))
 pprint(nyc_attrib_t_g.std().round(decimals=2))
 pprint(nyc_attrib_t_g.count())
+
+# Most popular breeds by Borough
+nyc_breeds = nyc_registry[['Borough', 'BreedName']]
+nyc_breeds_grp = nyc_breeds.groupby('Borough')
+pprint(nyc_breeds_grp['BreedName'].value_counts().nlargest(5))
 
 
 # Adelaide
@@ -71,7 +77,7 @@ ancestral = wiki[['Breed', 'Origin']]
 
 # Looking at the UK and Ireland
 ancestral_uk_ire = ancestral.copy()
-ancestral_uk_ire.dropna()
+ancestral_uk_ire.dropna(inplace=True)
 ancestral_uk_ire = ancestral_uk_ire[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
 ancestral_uk_ire = ancestral_uk_ire.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
 ancestral_uk_ire_grp = ancestral_uk_ire.groupby('Origin')
