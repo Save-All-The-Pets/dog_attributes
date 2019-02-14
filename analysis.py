@@ -19,6 +19,30 @@ attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
 lst = ['Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']
 
+wiki_breeds = set(wiki['Breed'].tolist())
+coren_breeds = set(coren['Breed'].tolist())
+turcsan_breeds = set(turcsan['Breed'].tolist())
+
+print('\nIntersection, Wiki and Turcsan')
+print(wiki_breeds & turcsan_breeds)
+print('\nIntersection, Wiki and Coren')
+print(wiki_breeds & coren_breeds)
+
+print('\nDifference, Wiki - Turcsan')
+print(wiki_breeds - turcsan_breeds)
+print('\nDifference, Turcsan - Wiki')
+print(turcsan_breeds - wiki_breeds)
+print('\nDifference, Wiki - Coren')
+print(wiki_breeds - coren_breeds)
+print('\nDifference, Coren - Wiki')
+print(coren_breeds - wiki_breeds)
+
+# comparison = wiki[['Breed']]
+# comparison['Turcsan'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(turcsan_breeds)) if x not in turcsan_breeds else '')
+# comparison['Coren'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(coren_breeds)) if x not in coren_breeds else '')
+# comparison.to_csv('dogdata/comparisons.csv')
+
+
 # Canine attributes by AKC Groupings
 wiki_akc = wiki[['Breed', 'AKC']]
 akc_groups_attrib = wiki_akc.set_index('Breed').join(attrib, how='left')
@@ -31,14 +55,14 @@ pprint(akc_std)
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
 
-# Make the census columns understandable
-val = 'EST_'
-err = 'MOE_'
-age_under_5 = 'VC16'
-age_5_17 = 'VC17'; age_18_24 = 'VC18'
-age_25_34 = 'VC19'; age_35_44 = 'VC20'
-age_45_54 = 'VC21'; age_55_64 = 'VC22'
-age_65_74 = 'VC23'; age_75_over = 'VC24'
+# # Make the census columns understandable
+# val = 'EST_'
+# err = 'MOE_'
+# age_under_5 = 'VC16'
+# age_5_17 = 'VC17'; age_18_24 = 'VC18'
+# age_25_34 = 'VC19'; age_35_44 = 'VC20'
+# age_45_54 = 'VC21'; age_55_64 = 'VC22'
+# age_65_74 = 'VC23'; age_75_over = 'VC24'
 
 # Strip out dirty values
 nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: None if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
@@ -169,19 +193,3 @@ print('\nAncestral Origin Standard Deviation')
 pprint(ancestral_attrib_grp.std().round(decimals=2).dropna())
 print('\nAncestral Origin Count')
 pprint(ancestral_attrib_count)
-
-wiki_breeds = set(wiki['Breed'].tolist())
-coren_breeds = set(coren['Breed'].tolist())
-turcsan_breeds = set(turcsan['Breed'].tolist())
-
-print('\nIntersection')
-print(wiki_breeds & turcsan_breeds)
-print('\nDifference, Wiki - Turcsan')
-print(wiki_breeds - turcsan_breeds)
-print('\nDifference, Turcsan - Wiki')
-print(turcsan_breeds - wiki_breeds)
-
-comparison = wiki[['Breed']]
-comparison['Turcsan'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(turcsan_breeds)) if x not in turcsan_breeds else '')
-comparison['Coren'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(coren_breeds)) if x not in coren_breeds else '')
-#comparison.to_csv('dogdata/comparisons.csv')
