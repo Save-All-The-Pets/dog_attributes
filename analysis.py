@@ -20,7 +20,7 @@ attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 # Canine attributes by AKC Groupings
 wiki_pared = wiki[['Breed', 'AKC']]
 akc_groups_attrib = wiki_pared.set_index('Breed').join(attrib.set_index('Breed'), how='left')
-akc = akc_groups_attrib.groupby('AKC').mean()
+akc = akc_groups_attrib.groupby('AKC').mean().round(decimals=2)
 pprint(akc)
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
@@ -35,13 +35,17 @@ age_45_54 = 'VC21'; age_55_64 = 'VC22'
 age_65_74 = 'VC23'; age_75_over = 'VC24'
 
 # Strip out dirty values
-nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: '' if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
+nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: None if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
+nyc_registry.dropna(inplace=True)
 
 nyc_attrib = nyc_registry.set_index('BreedName').join(attrib.set_index('Breed'), how='left')
-############### Get rid of extra coliumns
 nyc_attrib_t = nyc_registry.set_index('BreedName').join(turcsan.set_index('Breed'), how='left')
-nyc_attrib_t_g = nyc_attrib_t.groupby('Borough').mean()
-pprint(nyc_attrib_t_g.round(decimals=2))
+nyc_attrib_t = nyc_attrib_t[['Borough','Calm', 'Trainable', 'Sociable', 'Bold']]
+nyc_attrib_t_g = nyc_attrib_t.groupby('Borough')
+pprint(nyc_attrib_t_g.mean().round(decimals=2))
+pprint(nyc_attrib_t_g.std().round(decimals=2))
+pprint(nyc_attrib_t_g.count())
+
 
 # Adelaide
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib.set_index('Breed'), how='left')
@@ -120,4 +124,4 @@ print(turcsan_breeds - wiki_breeds)
 comparison = wiki[['Breed']]
 comparison['Turcsan'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(turcsan_breeds)) if x not in turcsan_breeds else '')
 comparison['Coren'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(coren_breeds)) if x not in coren_breeds else '')
-comparison.to_csv('dogdata/comparisons.csv')
+#comparison.to_csv('dogdata/comparisons.csv')
