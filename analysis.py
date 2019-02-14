@@ -99,10 +99,11 @@ ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Obedient'])
 ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Sociable'])
 ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Trainable'])
 
+plt.gcf().subplots_adjust(bottom=0.3)
 plt.legend()
 plt.title('Scores by Borough in NYC')
 ax.set_ylabel('Score')
-ax.set_xlabel('Country')
+ax.set_xlabel('Borough')
 plt.show()
 
 nyc_breeds = nyc_registry[['Borough', 'BreedName']]
@@ -185,10 +186,11 @@ ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Obedient'])
 ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Sociable'])
 ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Trainable'])
 
+plt.gcf().subplots_adjust(bottom=0.3)
 plt.legend()
-plt.title('Scores by UK and Ireland territory')
+plt.title('Scores by UK and Ireland Territory')
 ax.set_ylabel('Score')
-ax.set_xlabel('Country')
+ax.set_xlabel('Territory')
 plt.show()
 
 # Combining Scotland, Wales, and England as United Kingdom
@@ -243,6 +245,7 @@ ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Ob
 ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Sociable'])
 ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Trainable'])
 
+plt.gcf().subplots_adjust(bottom=0.3)
 plt.legend()
 plt.title('Scores by Country of Ancestry')
 ax.set_ylabel('Score')
