@@ -17,7 +17,7 @@ attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 coren = coren[['Breed', 'Obedient']]
 attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
-lst = ['Calm', 'Trainable', 'Sociable', 'Bold'] # 'Obedience'
+lst = ['Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']
 
 # Canine attributes by AKC Groupings
 wiki_akc = wiki[['Breed', 'AKC']]
@@ -49,22 +49,37 @@ nyc_attrib = nyc_registry.set_index('BreedName').join(attrib, how='left')
 #nyc_attrib_t = nyc_registry.join(turcsan, how='left')
 nyc_attrib = nyc_attrib[['Borough','Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']]
 nyc_attrib_g = nyc_attrib.groupby('Borough')
+print('\nNYC Mean:')
 pprint(nyc_attrib_g.mean().round(decimals=2))
+print('\nNYC Standard Deviation:')
 pprint(nyc_attrib_g.std().round(decimals=2))
+print('\nNYC Count:')
 pprint(nyc_attrib_g.count())
 
-# Most popular breeds by Borough
 nyc_breeds = nyc_registry[['Borough', 'BreedName']]
-pprint(nyc_breeds['BreedName'].value_counts().nlargest(8))
+print('\nTop Dogs Count')
+pprint(nyc_breeds['BreedName'].value_counts().nlargest(5))
 nyc_breeds_grp = nyc_breeds.groupby('Borough')
-pprint(nyc_breeds_grp['BreedName'].value_counts().nlargest(5))
+# Most popular breeds by Borough
+print('\nTop Dogs By Borough')
+print('\nManhattan')
+print(nyc_breeds_grp.get_group('Manhattan')['BreedName'].value_counts().head(5))
+print('\nQueens')
+print(nyc_breeds_grp.get_group('Queens')['BreedName'].value_counts().head(5))
+print('\nStaten Island')
+print(nyc_breeds_grp.get_group('Staten Island')['BreedName'].value_counts().head(5))
+print('\nBrooklyn')
+print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts().head(5))
+print('\nBronx')
+print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts().head(5))
 
 # Perform Chi-Square analysis on NYC data
 nyc_breeds_5 = nyc_registry[nyc_registry['BreedName'].isin(['Yorkshire Terrier', 'Shih Tzu','Chihuahua','Maltese','Labrador Retriever'])] #top 5 breeds overall
 contingency_table = pd.crosstab(nyc_breeds_5['BreedName'], nyc_breeds_5['Borough'])
-pprint(contingency_table)
 nyc_chi2 = stats.chi2_contingency(contingency_table)
-pprint('Test statistic: {}\np-value: {}'.format(nyc_chi2[0].round(2), nyc_chi2[1]))
+print('\nTest statistic: {}'.format(nyc_chi2[0].round(2)))
+print('P-value: {}'.format(nyc_chi2[1]))
+
 
 ''' Do a stacked bar chart?
         #Assigns the frequency values
