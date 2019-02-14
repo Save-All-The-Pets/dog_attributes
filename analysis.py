@@ -5,6 +5,16 @@ from scipy import stats
 import sys
 from fuzzywuzzy import process
 import re
+import matplotlib.pyplot as plt
+# import plotly
+# import plotly.plotly as py
+# import plotly.graph_objs as go
+ 
+# f = open('key.pem', 'r')
+# access_token = f.readline().strip('\n')
+# plotly.tools.set_credentials_file(username='msuttles', api_key=access_token)
+# plotly.tools.set_config_file(world_readable=False,
+#                              sharing='private')
 
 nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
 coren = pd.read_csv('dogdata/coren-edit.csv')
@@ -193,3 +203,22 @@ print('\nAncestral Origin Standard Deviation')
 pprint(ancestral_attrib_grp.std().round(decimals=2).dropna())
 print('\nAncestral Origin Count')
 pprint(ancestral_attrib_count)
+
+fig, ax = plt.subplots()
+# pprint(ancestral_attrib_mean_filtered.index)
+plt.xticks(rotation=90)
+ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Bold'])
+ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Calm'])
+ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Obedient'])
+ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Sociable'])
+ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Trainable'])
+
+
+plt.legend()
+plt.title('Scores by Country of Ancestry')
+ax.set_ylabel('Score')
+ax.set_xlabel('Country')
+plt.show()
+
+# data = [ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Bold']]
+# py.plot(data, filename = 'basic-line', auto_open=True)
