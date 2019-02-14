@@ -55,14 +55,16 @@ pprint(nyc_attrib_t_g.count())
 # Adelaide
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib.set_index('Breed'), how='left')
 
-print('Adelaide')
+print('\nAdelaide Mean')
 print(adelaide_attrib[lst].mean().round(decimals=2))
+print('\nAdelaide Standard Deviation')
 print(adelaide_attrib[lst].std().round(decimals=2))
 
 # Edmonton
-print('Edmonton')
+print('\nEdmonton Mean')
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib.set_index('Breed'), how='left')
 print(edmonton_attrib[lst].mean().round(decimals=2))
+print('\nEdmonton Standard Deviation')
 print(edmonton_attrib[lst].std().round(decimals=2))
 
 ancestral = wiki[['Breed', 'Origin']]
@@ -73,8 +75,11 @@ ancestral_uk_ire.dropna()
 ancestral_uk_ire = ancestral_uk_ire[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
 ancestral_uk_ire = ancestral_uk_ire.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
 ancestral_uk_ire_grp = ancestral_uk_ire.groupby('Origin')
+print('\nUK and Ireland Mean')
 print(ancestral_uk_ire_grp.mean().round(decimals=2))
+print('\nUK and Ireland Standard Deviation')
 print(ancestral_uk_ire_grp.std().round(decimals=2))
+print('\nUK and Ireland Count')
 print(ancestral_uk_ire_grp.count())
 
 # Combining Scotland, Wales, and England as United Kingdom
@@ -111,10 +116,13 @@ ancestral_attrib_count = ancestral_attrib_grp.count()
 ancestral_attrib_mean =  ancestral_attrib_grp.mean().round(decimals=2)
 
 # Only display values where there is more than one dog
-ancestral_attrib_filtered = ancestral_attrib_mean[ancestral_attrib_count['Bold'] > 1]
+ancestral_attrib_mean_filtered = ancestral_attrib_mean[ancestral_attrib_count['Bold'] > 1]
 
-pprint(ancestral_attrib_filtered)
+print('\nAncestral Origin Mean, n>1')
+pprint(ancestral_attrib_mean_filtered)
+print('\nAncestral Origin Standard Deviation')
 pprint(ancestral_attrib_grp.std().round(decimals=2).dropna())
+print('\nAncestral Origin Count')
 pprint(ancestral_attrib_count)
 
 wiki_breeds = set(wiki['Breed'].tolist())
