@@ -49,3 +49,5 @@ Further research on dogs in the UK: [Estimation of the number and demographics o
 TO DO:
 
 Include fuzzy values - what about mixes?
+
+left/inner joins?

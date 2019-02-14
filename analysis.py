@@ -14,14 +14,14 @@ adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.cs
 wiki = pd.read_csv('dogdata/wiki-edit.csv')
 attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 
-coren = coren[['Breed', 'Obedience']]
-#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
+coren = coren[['Breed', 'Obedient']]
+attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
 lst = ['Calm', 'Trainable', 'Sociable', 'Bold'] # 'Obedience'
 
 # Canine attributes by AKC Groupings
 wiki_akc = wiki[['Breed', 'AKC']]
-akc_groups_attrib = wiki_akc.set_index('Breed').join(attrib.set_index('Breed'), how='left')
+akc_groups_attrib = wiki_akc.set_index('Breed').join(attrib, how='left')
 print('\nAKC Mean')
 akc = akc_groups_attrib.groupby('AKC').mean().round(decimals=2)
 pprint(akc)
@@ -45,13 +45,13 @@ nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: None if x not in
 nyc_registry['BreedName'] = nyc_registry['BreedName'].map(lambda x: None if x == 'Unknown' else x)
 nyc_registry.dropna(inplace=True)
 
-nyc_attrib = nyc_registry.set_index('BreedName').join(attrib.set_index('Breed'), how='left')
-nyc_attrib_t = nyc_registry.set_index('BreedName').join(turcsan.set_index('Breed'), how='left')
-nyc_attrib_t = nyc_attrib_t[['Borough','Calm', 'Trainable', 'Sociable', 'Bold']]
-nyc_attrib_t_g = nyc_attrib_t.groupby('Borough')
-pprint(nyc_attrib_t_g.mean().round(decimals=2))
-pprint(nyc_attrib_t_g.std().round(decimals=2))
-pprint(nyc_attrib_t_g.count())
+nyc_attrib = nyc_registry.set_index('BreedName').join(attrib, how='left')
+#nyc_attrib_t = nyc_registry.join(turcsan, how='left')
+nyc_attrib = nyc_attrib[['Borough','Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']]
+nyc_attrib_g = nyc_attrib.groupby('Borough')
+pprint(nyc_attrib_g.mean().round(decimals=2))
+pprint(nyc_attrib_g.std().round(decimals=2))
+pprint(nyc_attrib_g.count())
 
 # Most popular breeds by Borough
 nyc_breeds = nyc_registry[['Borough', 'BreedName']]
@@ -59,37 +59,12 @@ pprint(nyc_breeds['BreedName'].value_counts().nlargest(8))
 nyc_breeds_grp = nyc_breeds.groupby('Borough')
 pprint(nyc_breeds_grp['BreedName'].value_counts().nlargest(5))
 
-# Perform Chi-Square analysis
+# Perform Chi-Square analysis on NYC data
 nyc_breeds_5 = nyc_registry[nyc_registry['BreedName'].isin(['Yorkshire Terrier', 'Shih Tzu','Chihuahua','Maltese','Labrador Retriever'])] #top 5 breeds overall
 contingency_table = pd.crosstab(nyc_breeds_5['BreedName'], nyc_breeds_5['Borough'])
 pprint(contingency_table)
-pprint(stats.chi2_contingency(contingency_table))
-'''
-#Calculate expected values
-row_sums = contingency_table.iloc[0:5,5].values
-pprint(row_sums)
-col_sums = contingency_table.iloc[5,0:5].values
-pprint(col_sums)
-total = contingency_table.loc['All', 'All']
-
-f_obs = []
-for i in range(5):
-    f_obs = np.append(f_obs, contingency_table.iloc[i][0:5].values)
-
-f_expected = []
-for j in range(5):
-    for i in col_sums:
-        f_expected.append(i*row_sums[j]/total)
-pprint(f_expected)
-
-chi_squared_statistic = ((f_obs - f_expected)**2/f_expected).sum()
-print('Chi-squared Statistic: ',chi_squared_statistic)
-
-dof = (len(row_sums)-1)*(len(col_sums)-1)
-print('Degrees of Freedom: ',dof)
-pprint(f_obs)
-
-stats.chi2_contingency(f_obs)[0:3]'''
+nyc_chi2 = stats.chi2_contingency(contingency_table)
+pprint('Test statistic: {}\np-value: {}'.format(nyc_chi2[0].round(2), nyc_chi2[1]))
 
 ''' Do a stacked bar chart?
         #Assigns the frequency values
@@ -109,7 +84,7 @@ stats.chi2_contingency(f_obs)[0:3]'''
         '''
 
 # Adelaide
-adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib.set_index('Breed'), how='left')
+adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
 print('\nAdelaide Mean')
 print(adelaide_attrib[lst].mean().round(decimals=2))
 print('\nAdelaide Standard Deviation')
@@ -117,7 +92,7 @@ print(adelaide_attrib[lst].std().round(decimals=2))
 
 # Edmonton
 print('\nEdmonton Mean')
-edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib.set_index('Breed'), how='left')
+edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
 print(edmonton_attrib[lst].mean().round(decimals=2))
 print('\nEdmonton Standard Deviation')
 print(edmonton_attrib[lst].std().round(decimals=2))
@@ -128,7 +103,7 @@ ancestral = wiki[['Breed', 'Origin']]
 ancestral_uk_ire = ancestral.copy()
 ancestral_uk_ire.dropna(inplace=True)
 ancestral_uk_ire = ancestral_uk_ire[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
-ancestral_uk_ire = ancestral_uk_ire.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
+ancestral_uk_ire = ancestral_uk_ire.set_index('Breed').join(attrib, how='inner')
 ancestral_uk_ire_grp = ancestral_uk_ire.groupby('Origin')
 print('\nUK and Ireland Mean')
 print(ancestral_uk_ire_grp.mean().round(decimals=2))
@@ -139,7 +114,7 @@ print(ancestral_uk_ire_grp.count())
 
 # Combining Scotland, Wales, and England as United Kingdom
 ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
-ancestral_attrib = ancestral.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
+ancestral_attrib = ancestral.set_index('Breed').join(attrib, how='inner')
 
 # Take cells with multiple countries and split them into separate countries
 def splitDataFrameList(df,target_column,separator):
