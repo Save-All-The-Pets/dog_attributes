@@ -154,12 +154,27 @@ ancestral_uk_ire.dropna(inplace=True)
 ancestral_uk_ire = ancestral_uk_ire[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
 ancestral_uk_ire = ancestral_uk_ire.set_index('Breed').join(attrib, how='inner')
 ancestral_uk_ire_grp = ancestral_uk_ire.groupby('Origin')
+ancestral_uk_ire_mean = ancestral_uk_ire_grp.mean()
 print('\nUK and Ireland Mean')
 print(ancestral_uk_ire_grp.mean().round(decimals=2))
 print('\nUK and Ireland Standard Deviation')
 print(ancestral_uk_ire_grp.std().round(decimals=2))
 print('\nUK and Ireland Count')
 print(ancestral_uk_ire_grp.count())
+
+fig, ax = plt.subplots()
+plt.xticks(rotation=90)
+ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Bold'])
+ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Calm'])
+ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Obedient'])
+ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Sociable'])
+ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire['Trainable'])
+
+plt.legend()
+plt.title('Scores')
+ax.set_ylabel('Score')
+ax.set_xlabel('Country')
+plt.show()
 
 # Combining Scotland, Wales, and England as United Kingdom
 ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
@@ -212,7 +227,6 @@ ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Ca
 ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Obedient'])
 ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Sociable'])
 ax.plot(ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Trainable'])
-
 
 plt.legend()
 plt.title('Scores by Country of Ancestry')
