@@ -38,23 +38,23 @@ age_65_74 = 'VC23'; age_75_over = 'VC24'
 nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: '' if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
 
 nyc_attrib = nyc_registry.set_index('BreedName').join(attrib.set_index('Breed'), how='left')
-
+############### Get rid of extra coliumns
 nyc_attrib_t = nyc_registry.set_index('BreedName').join(turcsan.set_index('Breed'), how='left')
 nyc_attrib_t_g = nyc_attrib_t.groupby('Borough').mean()
-pprint(nyc_attrib_t_g)
+pprint(nyc_attrib_t_g.round(decimals=2))
 
 # Adelaide
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib.set_index('Breed'), how='left')
 
 print('Adelaide')
-print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean())
-print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std())
+print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean().round(decimals=2))
+print(adelaide_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std().round(decimals=2))
 
 # Edmonton
 print('Edmonton')
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib.set_index('Breed'), how='left')
-print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean())
-print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std())
+print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].mean().round(decimals=2))
+print(edmonton_attrib[['Calm', 'Trainable', 'Sociable', 'Bold']].std().round(decimals=2))
 
 ancestral = wiki[['Breed', 'Origin']]
 
@@ -64,8 +64,8 @@ ancestral_uk_ire.dropna()
 ancestral_uk_ire = ancestral_uk_ire[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
 ancestral_uk_ire = ancestral_uk_ire.set_index('Breed').join(attrib.set_index('Breed'), how='inner')
 ancestral_uk_ire_grp = ancestral_uk_ire.groupby('Origin')
-print(ancestral_uk_ire_grp.mean())
-print(ancestral_uk_ire_grp.std())
+print(ancestral_uk_ire_grp.mean().round(decimals=2))
+print(ancestral_uk_ire_grp.std().round(decimals=2))
 print(ancestral_uk_ire_grp.count())
 
 # Combining Scotland, Wales, and England as United Kingdom
@@ -94,11 +94,18 @@ def splitDataFrameList(df,target_column,separator):
 
 ancestral_attrib.dropna(inplace=True)
 ancestral_attrib2 = splitDataFrameList(ancestral_attrib,'Origin', '/')
+ancestral_attrib2['Origin'] = ancestral_attrib2['Origin'].map(lambda x: 'China' if x == 'Tibet (China)' else x)
 
-ancestral_attrib_group = ancestral_attrib2.groupby('Origin').mean()
-pprint(ancestral_attrib_group)
-ancestral_count = ancestral_attrib2.groupby('Origin').count()
-pprint(ancestral_count)
+ancestral_attrib_grp = ancestral_attrib2.groupby('Origin')
+
+ancestral_attrib_count = ancestral_attrib_grp.count()
+ancestral_attrib_mean =  ancestral_attrib_grp.mean().round(decimals=2)
+
+# Only display values where there is more than one dog
+ancestral_attrib_filtered = ancestral_attrib_mean[ancestral_attrib_count['Bold'] > 1]
+
+pprint(ancestral_attrib_grp.std().round(decimals=2))
+pprint(ancestral_attrib_filtered)
 
 wiki_breeds = set(wiki['Breed'].tolist())
 coren_breeds = set(coren['Breed'].tolist())
