@@ -1,6 +1,6 @@
-import time
 from pprint import pprint
 import pandas as pd
+import numpy as np
 import sys
 from fuzzywuzzy import process
 import re
@@ -14,7 +14,7 @@ wiki = pd.read_csv('dogdata/wiki-edit.csv')
 attrib = turcsan = pd.read_csv('dogdata/turcsan.csv')
 
 coren = coren[['Breed', 'Obedience']]
-#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer').copy()
+#attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
 lst = ['Calm', 'Trainable', 'Sociable', 'Bold'] # 'Obedience'
 
@@ -54,13 +54,33 @@ pprint(nyc_attrib_t_g.count())
 
 # Most popular breeds by Borough
 nyc_breeds = nyc_registry[['Borough', 'BreedName']]
+pprint(nyc_breeds['BreedName'].value_counts().nlargest(8))
 nyc_breeds_grp = nyc_breeds.groupby('Borough')
 pprint(nyc_breeds_grp['BreedName'].value_counts().nlargest(5))
 
+# Perform Chi-Square analysis
+nyc_breeds_5 = nyc_registry[nyc_registry['BreedName']].isin(['Yorkshire Terrier', 'Shih Tzu','Chihuahua','Maltese','Labrador Retriever'])
+contingency_table = pd.crosstab(nyc_breeds_5['BreedName'], nyc_breeds_5['Borough'], margins=True)
+
+''' Do a stacked bar chart?
+        #Assigns the frequency values
+        malecount = contingency_table.iloc[0][0:6].values
+        femalecount = contingency_table.iloc[1][0:6].values
+
+        #Plots the bar chart
+        fig = plt.figure(figsize=(10, 5))
+        sns.set(font_scale=1.8)
+        categories = ["0-9","10-19","20-29","30-39","40-49","50+"]
+        p1 = plt.bar(categories, malecount, 0.55, color='#d62728')
+        p2 = plt.bar(categories, femalecount, 0.55, bottom=malecount)
+        plt.legend((p2[0], p1[0]), ('Male', 'Female'))
+        plt.xlabel('Hours per Week Worked')
+        plt.ylabel('Count')
+        plt.show()
+        '''
 
 # Adelaide
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib.set_index('Breed'), how='left')
-
 print('\nAdelaide Mean')
 print(adelaide_attrib[lst].mean().round(decimals=2))
 print('\nAdelaide Standard Deviation')

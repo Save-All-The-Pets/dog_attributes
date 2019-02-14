@@ -6,6 +6,8 @@ In this study, I'm negotiating the line between making this data publicly access
 
 There are many ways to look at the data. Some of the simple but interesting ones would be looking at the dog intelligence for each grouping of dog--for example, are Hounds or Herding dogs more intelligent? There are many ways to slice this data, but I will rely mainly on the AKC standards in this study. However, I'm capturing other groups (such as the UK standards) in case others want to use this data to look at other relationships. I can also look at the intelligence of each animal grouped by their country of origin. Are certain regions of the world known for having more intelligent dogs? This will be a bit difficult since some countries might only have 1 or 2 dogs that come from the country, making it a result that is not statistically significant. Given enough time to properly clean the data, I will also build on existing research that finds that larger dogs tend to be more intelligent by taking height and weight into account for each dog.
 
+I will perform a Chi-square test to determine if a person's borough is statistically relevant to what type of dog that person owns. I will perform the test at the 0.05 significance level. The null hypothesis will be that a person's borough does not have a statistically significant relationship with the type of dog he or she owns. I will test for the top 5 dogs in NYC.
+
 ## Relationships to explore
 
 Once I've brought in all the data and packaged it, I will start looking at relationships between the data sets. The highlight of the project will be determining cities' "dog IQ scores." Combining the registration data for NY, Adelaide, and Edmonton with the dog intelligence scores, I can find a city's mean dog IQ. I will do this for each borough in NY as well as the other two cities. I will then incorporate US census data and determine if there are trends in the data there. I will look at age groups, employment information, and other aspects of the census data and determine if there is a relationship between those factors and the breakdown of particular dog breeds.
@@ -46,4 +48,4 @@ Further research on dogs in the UK: [Estimation of the number and demographics o
 
 TO DO:
 
-Include fuzzy values
+Include fuzzy values - what about mixes?
