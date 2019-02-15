@@ -162,9 +162,10 @@ def splitDataFrameList(df,target_column,separator):
     new_df = pd.DataFrame(new_rows)
     return new_df
 
+# Show which dogs are in each dataset.
 describe_breeds()
 
-# Canine attributes by AKC Groupings
+# Canine attributes by AKC groupings
 wiki_akc = wiki[['Breed', 'AKC']]
 akc_groups_attrib = wiki_akc.set_index('Breed').join(attrib, how='left')
 print('\nAKC Mean')
@@ -176,6 +177,7 @@ pprint(akc_std)
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
 
+# Plot the AKC grouping data
 plot_by_attrib(akc, lst, 'AKC Grouping')
 
 # Strip out dirty values
@@ -184,17 +186,14 @@ nyc_registry['BreedName'] = nyc_registry['BreedName'].map(lambda x: None if x ==
 nyc_registry.dropna(inplace=True)
 
 # Display breed attributes by NYC borough
-
 nyc_attrib = nyc_registry.set_index('BreedName').join(attrib, how='left')
 nyc_attrib = nyc_attrib[['Borough','Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']]
-
 dogs_by_borough()
 
 
 # Perform Chi-Square analysis on NYC data
 chi2_breed = ['Yorkshire Terrier', 'Shih Tzu','Chihuahua', 'Maltese', 'Labrador Retriever']
 chi2_breed_com = itertools.combinations(chi2_breed, 2)
-
 nyc_breeds_5 = nyc_registry[nyc_registry['BreedName'].isin(chi2_breed)] #top 5 breeds overall
 for i in chi2_breed_com:
     print('\n',i)
@@ -204,7 +203,7 @@ for i in chi2_breed_com:
     print('Test statistic: {}'.format(nyc_chi2[0].round(2)))
     print('P-value: {}'.format(nyc_chi2[1].round(4)))
 
-
+# Show data on NYC, Adelaide, and Edmonton
 describe(nyc_attrib, 'NYC')
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
 describe(adelaide_attrib, 'Adelaide')
@@ -212,10 +211,8 @@ edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
 describe(edmonton_attrib, 'Edmonton')
 
 
-
-ancestral = wiki[['Breed', 'Origin']]
-
 # Looking at the UK and Ireland
+ancestral = wiki[['Breed', 'Origin']]
 ancestral_uk_ire = ancestral.copy()
 ancestral_uk_ire.dropna(inplace=True)
 ancestral_uk_ire = ancestral_uk_ire[ancestral_uk_ire['Origin'].isin(['England', 'Scotland', 'Wales', 'Ireland'])]
@@ -229,13 +226,14 @@ print(ancestral_uk_ire_grp.std().round(decimals=2))
 print('\nUK and Ireland Count')
 print(ancestral_uk_ire_grp.count())
 
+# Plot the UK and Ireland data
 plot_by_attrib(ancestral_uk_ire_mean, lst, 'UK and Irish Ancestry')
 
 # Combining Scotland, Wales, and England as United Kingdom
 ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
 ancestral_attrib = ancestral.set_index('Breed').join(attrib, how='inner')
 
-
+# Show data on attributes of dogs given their ancestral home
 ancestral_attrib.dropna(inplace=True)
 ancestral_attrib2 = splitDataFrameList(ancestral_attrib,'Origin', '/')
 ancestral_attrib2['Origin'] = ancestral_attrib2['Origin'].map(lambda x: 'China' if x == 'Tibet (China)' else x)
@@ -253,4 +251,5 @@ pprint(ancestral_attrib_grp.std().round(decimals=2).dropna())
 print('\nAncestral Origin Count')
 pprint(ancestral_attrib_count)
 
+# Plot by country of origin
 plot_by_attrib(ancestral_attrib_mean_filtered, lst, 'Country of Origin')
