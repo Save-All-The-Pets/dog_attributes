@@ -39,6 +39,7 @@ Compliance could affect the data; certain dog owners may be less likely to regis
 [Edmonton Dog Licences Data Set](https://data.edmonton.ca/Community-Services/Pet-Licenses-by-Neighbourhood/5squ-mg4w)
 [Data on Canine Intelligence](https://data.world/len/intelligence-of-dogs)
 [Trainability and boldness traits differ between dog breed clusters based on conventional breed categories and genetic relatedness by Borbála Turcsán, Enikő Kubinyi, Ádám Miklósi](https://www.researchgate.net/publication/228485434_Trainability_and_boldness_traits_differ_between_dog_breed_clusters_based_on_conventional_breed_categories_and_genetic_relatedness)
+
 Further research on dogs in the UK: [Estimation of the number and demographics of companion dogs in the UK by Lucy Asher, Emma L Buckland, C Ianthi Phylactopoulos, Martin C Whiting, Siobhan M Abeyesinghe and Christopher M Wathes](https://bmcvetres.biomedcentral.com/articles/10.1186/1746-6148-7-74)
 
 ## Acknowledgements
@@ -50,4 +51,4 @@ TO DO:
 
 Include fuzzy values - what about mixes?
 
-left/inner joins?
+left/inner joins???????

@@ -77,7 +77,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by AKC Grouping')
 ax.set_ylabel('Score')
 ax.set_xlabel('AKC Grouping')
-plt.savefig('plots/akc.png')
+# plt.savefig('plots/akc.png')
 plt.show()
 
 
@@ -121,7 +121,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by Borough in NYC')
 ax.set_ylabel('Score')
 ax.set_xlabel('Borough')
-plt.savefig('plots/borough.png')
+# plt.savefig('plots/borough.png')
 plt.show()
 
 nyc_breeds = nyc_registry[['Borough', 'BreedName']]
@@ -141,12 +141,6 @@ print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts().head(5))
 print('\nBronx')
 print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts().head(5))
 
-# Perform Chi-Square analysis on NYC data
-nyc_breeds_5 = nyc_registry[nyc_registry['BreedName'].isin(['Yorkshire Terrier', 'Shih Tzu','Chihuahua','Maltese','Labrador Retriever'])] #top 5 breeds overall
-contingency_table = pd.crosstab(nyc_breeds_5['BreedName'], nyc_breeds_5['Borough'])
-nyc_chi2 = stats.chi2_contingency(contingency_table)
-print('\nTest statistic: {}'.format(nyc_chi2[0].round(2)))
-print('P-value: {}'.format(nyc_chi2[1]))
 
 # NYC Overall 
 plt.title('NYC Overall Attributes')
@@ -155,8 +149,7 @@ plt.xlabel('Attributes')
 nyc_attrib_overall = nyc_attrib[lst]
 nyc_attrib_overall = nyc_attrib.mean()
 plt.bar(nyc_attrib_overall.index, nyc_attrib_overall.values)
-plt.savefig('plots/nyc_overall.png')
-
+# plt.savefig('plots/nyc_overall.png')
 plt.show()
 
 
@@ -170,7 +163,7 @@ print(adelaide_attrib[lst].std().round(decimals=2))
 
 plt.title('Adelaide Overall Attributes')
 plt.bar(adelaide_attrib_mean.index, adelaide_attrib_mean.values)
-plt.savefig('plots/adelaide_overall.png')
+# plt.savefig('plots/adelaide_overall.png')
 
 plt.show()
 
@@ -184,9 +177,8 @@ print(edmonton_attrib[lst].std().round(decimals=2))
 
 plt.title('Edmonton Overall Attributes')
 plt.bar(edmonton_attrib_mean.index, edmonton_attrib_mean.values)
-plt.savefig('plots/edmonton_overall.png')
+# plt.savefig('plots/edmonton_overall.png')
 plt.show()
-
 
 ancestral = wiki[['Breed', 'Origin']]
 
@@ -215,10 +207,10 @@ ax.plot(ancestral_uk_ire_mean.index, ancestral_uk_ire_mean['Trainable'])
 plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor') 
 plt.gcf().subplots_adjust(bottom=0.3, right=.75)
 plt.legend(loc=(1.04,0.6))
-plt.title('Scores by UK and Ireland Territory')
+plt.title('Scores by UK and Irish Ancestry')
 ax.set_ylabel('Score')
 ax.set_xlabel('Territory')
-plt.savefig('plots/uk_ireland.png')
+# plt.savefig('plots/uk_ireland.png')
 plt.show()
 
 # Combining Scotland, Wales, and England as United Kingdom
@@ -279,7 +271,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by Country of Ancestry')
 ax.set_ylabel('Score')
 ax.set_xlabel('Country')
-plt.savefig('plots/ancestry.png')
+# plt.savefig('plots/ancestry.png')
 plt.show()
 
 # data = [ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Bold']]
