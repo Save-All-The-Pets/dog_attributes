@@ -31,11 +31,10 @@ wiki = pd.read_csv('../dogdata/wiki-edit.csv')
 turcsan = pd.read_csv('../dogdata/turcsan.csv')
 
 lst = ['Bold','Calm', 'Obedient','Sociable', 'Trainable']
+coren = coren[['Breed', 'Obedient']]
+attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
 def describe_breeds(save=False):
-    coren = coren[['Breed', 'Obedient']]
-    attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
-
     wiki_breeds = set(wiki['Breed'].tolist())
     coren_breeds = set(coren['Breed'].tolist())
     turcsan_breeds = set(turcsan['Breed'].tolist())
@@ -59,23 +58,6 @@ def describe_breeds(save=False):
         comparison['Coren'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(coren_breeds)) if x not in coren_breeds else '')
         comparison.to_csv('../dogdata/comparisons.csv')
 
-describe_breeds()
-
-# Canine attributes by AKC Groupings
-wiki_akc = wiki[['Breed', 'AKC']]
-akc_groups_attrib = wiki_akc.set_index('Breed').join(attrib, how='left')
-print('\nAKC Mean')
-akc = akc_groups_attrib.groupby('AKC').mean().round(decimals=2)
-pprint(akc)
-print('\nAKC Standard Deviation')
-akc_std = akc_groups_attrib.groupby('AKC').std().round(decimals=2)
-pprint(akc_std)
-akc_count = akc_groups_attrib.groupby('AKC').count()
-pprint(akc_count)
-
-# describe(akc_groups_attrib, 'AKC', display=False)
-
-
 def plot_by_attrib(df, categ,label, filename=None, display=True):
     fig, ax = plt.subplots()
     plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor')
@@ -91,19 +73,6 @@ def plot_by_attrib(df, categ,label, filename=None, display=True):
         plt.savefig('../plots/'+filename)
     if display:
         plt.show()
-
-plot_by_attrib(akc, lst, 'AKC Grouping')
-
-# Strip out dirty values
-nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: None if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
-nyc_registry['BreedName'] = nyc_registry['BreedName'].map(lambda x: None if x == 'Unknown' else x)
-nyc_registry.dropna(inplace=True)
-
-# Display breed attributes by NYC borough
-
-nyc_attrib = nyc_registry.set_index('BreedName').join(attrib, how='left')
-nyc_attrib = nyc_attrib[['Borough','Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']]
-
 
 def dogs_by_borough(n=False, display=True):
     nyc_attrib_g = nyc_attrib.groupby('Borough')
@@ -133,9 +102,55 @@ def dogs_by_borough(n=False, display=True):
     print('\nBronx')
     print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts(normalize=n).head(5))
 
+
+describe_breeds()
+
+# Canine attributes by AKC Groupings
+wiki_akc = wiki[['Breed', 'AKC']]
+akc_groups_attrib = wiki_akc.set_index('Breed').join(attrib, how='left')
+print('\nAKC Mean')
+akc = akc_groups_attrib.groupby('AKC').mean().round(decimals=2)
+pprint(akc)
+print('\nAKC Standard Deviation')
+akc_std = akc_groups_attrib.groupby('AKC').std().round(decimals=2)
+pprint(akc_std)
+akc_count = akc_groups_attrib.groupby('AKC').count()
+pprint(akc_count)
+
+def splitDataFrameList(df,target_column,separator):
+    ''' df = dataframe to split,
+    target_column = the column containing the values to split
+    separator = the symbol used to perform the split
+    returns: a dataframe with each entry for the target column separated, with each element moved into a new row. 
+    The values in the other columns are duplicated across the newly divided rows.
+    Thanks to James Allen, https://gist.github.com/jlln/338b4b0b55bd6984f883
+    '''
+    def splitListToRows(row,row_accumulator,target_column,separator):
+        split_row = row[target_column].split(separator)
+        for s in split_row:
+            new_row = row.to_dict()
+            new_row[target_column] = s
+            row_accumulator.append(new_row)
+    new_rows = []
+    df.apply(splitListToRows,axis=1,args = (new_rows,target_column,separator))
+    new_df = pd.DataFrame(new_rows)
+    return new_df
+
+
+
+plot_by_attrib(akc, lst, 'AKC Grouping')
+
+# Strip out dirty values
+nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: None if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
+nyc_registry['BreedName'] = nyc_registry['BreedName'].map(lambda x: None if x == 'Unknown' else x)
+nyc_registry.dropna(inplace=True)
+
+# Display breed attributes by NYC borough
+
+nyc_attrib = nyc_registry.set_index('BreedName').join(attrib, how='left')
+nyc_attrib = nyc_attrib[['Borough','Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']]
+
 dogs_by_borough()
-
-
 
 
 # Perform Chi-Square analysis on NYC data
@@ -152,14 +167,9 @@ for i in chi2_breed_com:
     print('P-value: {}'.format(nyc_chi2[1].round(4)))
 
 
-
-
-
 describe(nyc_attrib, 'NYC')
-
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
 describe(adelaide_attrib, 'Adelaide')
-
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
 describe(edmonton_attrib, 'Edmonton')
 
@@ -187,32 +197,11 @@ plot_by_attrib(ancestral_uk_ire_mean, lst, 'UK and Irish Ancestry')
 ancestral['Origin'] = ancestral['Origin'].map(lambda x: 'United Kingdom' if x in {'England', 'Wales', 'Scotland'} else x)
 ancestral_attrib = ancestral.set_index('Breed').join(attrib, how='inner')
 
-# Take cells with multiple countries and split them into separate countries
-def splitDataFrameList(df,target_column,separator):
-    ''' df = dataframe to split,
-    target_column = the column containing the values to split
-    separator = the symbol used to perform the split
-    returns: a dataframe with each entry for the target column separated, with each element moved into a new row. 
-    The values in the other columns are duplicated across the newly divided rows.
-    Thanks to James Allen, https://gist.github.com/jlln/338b4b0b55bd6984f883
-    '''
-    def splitListToRows(row,row_accumulator,target_column,separator):
-        split_row = row[target_column].split(separator)
-        for s in split_row:
-            new_row = row.to_dict()
-            new_row[target_column] = s
-            row_accumulator.append(new_row)
-    new_rows = []
-    df.apply(splitListToRows,axis=1,args = (new_rows,target_column,separator))
-    new_df = pd.DataFrame(new_rows)
-    return new_df
 
 ancestral_attrib.dropna(inplace=True)
 ancestral_attrib2 = splitDataFrameList(ancestral_attrib,'Origin', '/')
 ancestral_attrib2['Origin'] = ancestral_attrib2['Origin'].map(lambda x: 'China' if x == 'Tibet (China)' else x)
-
 ancestral_attrib_grp = ancestral_attrib2.groupby('Origin')
-
 ancestral_attrib_count = ancestral_attrib_grp.count()
 ancestral_attrib_mean =  ancestral_attrib_grp.mean().round(decimals=2)
 
@@ -225,6 +214,5 @@ print('\nAncestral Origin Standard Deviation')
 pprint(ancestral_attrib_grp.std().round(decimals=2).dropna())
 print('\nAncestral Origin Count')
 pprint(ancestral_attrib_count)
-
 
 plot_by_attrib(ancestral_attrib_mean_filtered, lst, 'Country of Origin')
