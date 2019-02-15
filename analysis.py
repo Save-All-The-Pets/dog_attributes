@@ -130,17 +130,18 @@ print('\nTop Dogs Count')
 pprint(nyc_breeds['BreedName'].value_counts().nlargest(5))
 nyc_breeds_grp = nyc_breeds.groupby('Borough')
 # Most popular breeds by Borough
+n = False # Whether or not to normalize values
 print('\nTop Dogs By Borough')
 print('\nManhattan')
-print(nyc_breeds_grp.get_group('Manhattan')['BreedName'].value_counts().head(5))
+print(nyc_breeds_grp.get_group('Manhattan')['BreedName'].value_counts(normalize=n).head(5))
 print('\nQueens')
-print(nyc_breeds_grp.get_group('Queens')['BreedName'].value_counts().head(5))
+print(nyc_breeds_grp.get_group('Queens')['BreedName'].value_counts(normalize=n).head(5))
 print('\nStaten Island')
-print(nyc_breeds_grp.get_group('Staten Island')['BreedName'].value_counts().head(5))
+print(nyc_breeds_grp.get_group('Staten Island')['BreedName'].value_counts(normalize=n).head(5))
 print('\nBrooklyn')
-print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts().head(5))
+print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts(normalize=n).head(5))
 print('\nBronx')
-print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts().head(5))
+print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts(normalize=n).head(5))
 
 
 # NYC Overall 
@@ -150,7 +151,8 @@ plt.xlabel('Attributes')
 nyc_attrib_overall = nyc_attrib[lst]
 nyc_attrib_overall = nyc_attrib.mean()
 plt.bar(nyc_attrib_overall.index, nyc_attrib_overall.values)
-# plt.savefig('plots/nyc_overall.png')
+plt.ylim([0,0.65])
+plt.savefig('plots/nyc_overall.png')
 plt.show()
 
 
@@ -160,12 +162,12 @@ chi2_breed_com = itertools.combinations(chi2_breed, 2)
 
 nyc_breeds_5 = nyc_registry[nyc_registry['BreedName'].isin(chi2_breed)] #top 5 breeds overall
 for i in chi2_breed_com:
-    print(i)
+    print('\n',i)
     nyc_breeds_2 = nyc_registry[nyc_registry['BreedName'].isin(i)]
-    contingency_table = pd.crosstab(nyc_breeds_2['BreedName'], nyc_breeds_5['Borough'])
+    contingency_table = pd.crosstab(nyc_breeds_2['BreedName'], nyc_breeds_2['Borough'])
     nyc_chi2 = stats.chi2_contingency(contingency_table)
-    print('\nTest statistic: {}'.format(nyc_chi2[0].round(2)))
-    print('P-value: {}'.format(nyc_chi2[1]))
+    print('Test statistic: {}'.format(nyc_chi2[0].round(2)))
+    print('P-value: {}'.format(nyc_chi2[1].round(4)))
 
 
 # Adelaide
@@ -178,7 +180,8 @@ print(adelaide_attrib[lst].std().round(decimals=2))
 
 plt.title('Adelaide Overall Attributes')
 plt.bar(adelaide_attrib_mean.index, adelaide_attrib_mean.values)
-# plt.savefig('plots/adelaide_overall.png')
+plt.ylim([0,0.65])
+plt.savefig('plots/adelaide_overall.png')
 
 plt.show()
 
@@ -192,7 +195,8 @@ print(edmonton_attrib[lst].std().round(decimals=2))
 
 plt.title('Edmonton Overall Attributes')
 plt.bar(edmonton_attrib_mean.index, edmonton_attrib_mean.values)
-# plt.savefig('plots/edmonton_overall.png')
+plt.ylim([0,0.65])
+plt.savefig('plots/edmonton_overall.png')
 plt.show()
 
 ancestral = wiki[['Breed', 'Origin']]
@@ -225,7 +229,7 @@ plt.legend(loc=(1.04,0.6))
 plt.title('Scores by UK and Irish Ancestry')
 ax.set_ylabel('Score')
 ax.set_xlabel('Territory')
-# plt.savefig('plots/uk_ireland.png')
+plt.savefig('plots/uk_ireland.png')
 plt.show()
 
 # Combining Scotland, Wales, and England as United Kingdom
