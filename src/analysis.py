@@ -217,22 +217,25 @@ edmonton_mean = edmonton_attrib[lst].mean()
 nyc_mean = nyc_attrib[lst].mean()
 
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+fig1 = plt.figure()
+ax1 = fig.add_subplot(111, projection='3d')
 xs = np.arange(5)
 ys = adelaide_mean.values
 cs = 'r' * 5
-ax.bar(xs, ys, zs=5, zdir='y', color=cs, alpha=0.8)
+ax1.bar(xs, ys, zs=3, zdir='y', color=cs, alpha=0.8)
 ys = edmonton_mean.values
 cs = 'g' * 5
-ax.bar(xs, ys, zs=3, zdir='y', color=cs, alpha=0.8)
+ax1.bar(xs, ys, zs=2, zdir='y', color=cs, alpha=0.8 )
 ys = nyc_mean.values
 cs = 'b' * 5
-ax.bar(xs, ys, zs=1, zdir='y', color=cs, alpha=0.8)
+ax1.bar(xs, ys, zs=1, zdir='y', color=cs, alpha=0.8)
 
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
+ax1.w_xaxis.set_ticklabels(lst)
+ax1.w_yaxis.set_ticklabels(['Adelaide','Edmonton','NYC'])
+
+ax1.set_xlabel('X')
+ax1.set_ylabel('Scores')
+ax1.set_zlabel('Z')
 
 plt.show()
 
