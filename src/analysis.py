@@ -25,15 +25,15 @@ attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
 
 def describe(df, categ, filename=None, display=True):
-    """[summary]
+    """Show the mean and standard deviation of the data and optionally plot. Optionally save a file of the plot.
     
     Arguments:
         df {DataFrame} -- DataFrame to describe
-        categ {} -- [description]
+        categ {str} -- Display category
     
     Keyword Arguments:
-        filename {[type]} -- [description] (default: {None})
-        display {bool} -- [description] (default: {True})
+        filename {str} -- Name of file to save to (default: {None})
+        display {bool} -- Whether or not to display a plot (default: {True})
     """
     print('\n'+categ+' Mean')
     attrib_mean = df[lst].mean()
@@ -50,6 +50,11 @@ def describe(df, categ, filename=None, display=True):
         plt.show()
 
 def describe_breeds(save=False):
+    '''Show the intersection of different breeds of dogs according to which dataset they come from. For example, Dogue de Bordeaux is in the Turcsan set but not in the Wiki scraped set.
+
+    Returns:
+        None
+    '''
     wiki_breeds = set(wiki['Breed'].tolist())
     coren_breeds = set(coren['Breed'].tolist())
     turcsan_breeds = set(turcsan['Breed'].tolist())
@@ -74,6 +79,17 @@ def describe_breeds(save=False):
         comparison.to_csv('../dogdata/comparisons.csv')
 
 def plot_by_attrib(df, categ,label, filename=None, display=True):
+    """Plot a graph by the attributes provided.
+    
+    Arguments:
+        df {DataFrame} -- DF to plot
+        categ {list} -- Categories to plot
+        label {str} -- Label for what the data is describing
+    
+    Keyword Arguments:
+        filename {str} -- Name of the file to optionally save (default: {None})
+        display {bool} -- Whether or not to display the plot (default: {True})
+    """
     fig, ax = plt.subplots()
     plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor')
     for item in categ:
@@ -90,6 +106,12 @@ def plot_by_attrib(df, categ,label, filename=None, display=True):
         plt.show()
 
 def dogs_by_borough(n=False, display=True):
+    """Print information about dogs in NYC by borough. Optionally plot a graph.
+    
+    Keyword Arguments:
+        n {bool} -- Whether or not to normalize the data (default: {False})
+        display {bool} -- Whether or not to plot a graph by borough (default: {True})
+    """
     nyc_attrib_g = nyc_attrib.groupby('Borough')
     print('\nNYC Mean:')
     nyc_attrib_g_mean = nyc_attrib_g.mean()
@@ -117,6 +139,28 @@ def dogs_by_borough(n=False, display=True):
     print('\nBronx')
     print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts(normalize=n).head(5))
 
+def splitDataFrameList(df,target_column,separator):
+    """Thanks to James Allen, https://gist.github.com/jlln/338b4b0b55bd6984f883
+    
+    Arguments:
+        df {DataFrame} -- DataFrame to split,
+        target_column {string} -- The column containing the values to split
+        separator {str} -- The symbol used to perform the split
+    
+    Returns:
+        DataFrame -- A dataframe with each entry for the target column separated, with each element moved into a new row. 
+    The values in the other columns are duplicated across the newly divided rows.
+    """
+    def splitListToRows(row,row_accumulator,target_column,separator):
+        split_row = row[target_column].split(separator)
+        for s in split_row:
+            new_row = row.to_dict()
+            new_row[target_column] = s
+            row_accumulator.append(new_row)
+    new_rows = []
+    df.apply(splitListToRows,axis=1,args = (new_rows,target_column,separator))
+    new_df = pd.DataFrame(new_rows)
+    return new_df
 
 describe_breeds()
 
@@ -131,27 +175,6 @@ akc_std = akc_groups_attrib.groupby('AKC').std().round(decimals=2)
 pprint(akc_std)
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
-
-def splitDataFrameList(df,target_column,separator):
-    ''' df = dataframe to split,
-    target_column = the column containing the values to split
-    separator = the symbol used to perform the split
-    returns: a dataframe with each entry for the target column separated, with each element moved into a new row. 
-    The values in the other columns are duplicated across the newly divided rows.
-    Thanks to James Allen, https://gist.github.com/jlln/338b4b0b55bd6984f883
-    '''
-    def splitListToRows(row,row_accumulator,target_column,separator):
-        split_row = row[target_column].split(separator)
-        for s in split_row:
-            new_row = row.to_dict()
-            new_row[target_column] = s
-            row_accumulator.append(new_row)
-    new_rows = []
-    df.apply(splitListToRows,axis=1,args = (new_rows,target_column,separator))
-    new_df = pd.DataFrame(new_rows)
-    return new_df
-
-
 
 plot_by_attrib(akc, lst, 'AKC Grouping')
 
