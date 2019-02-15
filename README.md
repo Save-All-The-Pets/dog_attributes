@@ -11,7 +11,6 @@ I performed a Chi-square test to determine if a person's borough is statisticall
 <!-- For much more on this, please visit [Doggiedatazone.com](http://doggiedatazone.com) -->
 ![AKC Data](plots/akc.png)
 
-
 ## For future study
 
 There's much more to explore with this data. I may take a stab at some of the following, but others are also welcome to join in:
@@ -56,11 +55,3 @@ Compliance could affect the data; certain dog owners may be less likely to regis
 ## Contact the author
 
 Please direct any correspondence to Michael Suttles at: git at mgs.33mail.com.
-
-TO DO:
-
-Include fuzzy values - what about mixes?
-
-left/inner joins???????
-
-test
