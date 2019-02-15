@@ -78,7 +78,7 @@ def plot_by_attrib(df, categ,label, filename=None, display=True):
     ax.set_ylabel('Score')
     ax.set_xlabel(label)
     if filename is not None:
-        plt.savefig(filename)
+        plt.savefig('../plots/'+filename)
     if display:
         plt.show()
 
@@ -126,16 +126,6 @@ def dogs_by_borough(n=False):
 dogs_by_borough()
 
 
-# NYC Overall 
-plt.title('NYC Overall Attributes')
-plt.ylabel('Score')
-plt.xlabel('Attributes')
-nyc_attrib_overall = nyc_attrib[lst]
-nyc_attrib_overall = nyc_attrib.mean()
-plt.bar(nyc_attrib_overall.index, nyc_attrib_overall.values)
-plt.ylim([0,0.65])
-plt.savefig('../plots/nyc_overall.png')
-plt.show()
 
 
 # Perform Chi-Square analysis on NYC data
@@ -152,33 +142,33 @@ for i in chi2_breed_com:
     print('P-value: {}'.format(nyc_chi2[1].round(4)))
 
 
-# Adelaide
+def describe_city(df, place, filename=None, display=True):
+    if display:
+        print('\n'+place+' Mean')
+        attrib_mean = df[lst].mean()
+        print(attrib_mean.round(decimals=2))
+        print('\n'+place+' Standard Deviation')
+        print(attrib[lst].std().round(decimals=2))
+
+    plt.title(place+' Overall Attributes')
+    plt.bar(attrib_mean.index, attrib_mean.values)
+    plt.ylim([0,0.65])
+    if filename is not None:
+        plt.savefig('../plots/'+filename)
+    if display:
+        plt.show()
+
+
+
+describe_city(nyc_attrib, 'NYC')
+
 adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
-print('\nAdelaide Mean')
-adelaide_attrib_mean = adelaide_attrib[lst].mean()
-print(adelaide_attrib_mean.round(decimals=2))
-print('\nAdelaide Standard Deviation')
-print(adelaide_attrib[lst].std().round(decimals=2))
+describe_city(adelaide_attrib, 'Adelaide')
 
-plt.title('Adelaide Overall Attributes')
-plt.bar(adelaide_attrib_mean.index, adelaide_attrib_mean.values)
-plt.ylim([0,0.65])
-plt.savefig('plots/adelaide_overall.png')
-plt.show()
-
-# Edmonton
-print('\nEdmonton Mean')
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
-edmonton_attrib_mean = edmonton_attrib[lst].mean()
-print(edmonton_attrib_mean.round(decimals=2))
-print('\nEdmonton Standard Deviation')
-print(edmonton_attrib[lst].std().round(decimals=2))
+describe_city(edmonton_attrib, 'Edmonton')
 
-plt.title('Edmonton Overall Attributes')
-plt.bar(edmonton_attrib_mean.index, edmonton_attrib_mean.values)
-plt.ylim([0,0.65])
-plt.savefig('plots/edmonton_overall.png')
-plt.show()
+
 
 ancestral = wiki[['Breed', 'Origin']]
 
