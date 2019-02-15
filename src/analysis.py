@@ -7,21 +7,7 @@ from fuzzywuzzy import process
 import matplotlib.pyplot as plt
 import itertools
 
-def describe(df, place, filename=None, display=True):
-    print('\n'+place+' Mean')
-    attrib_mean = df[lst].mean()
-    print(attrib_mean.round(decimals=2))
-    print('\n'+place+' Standard Deviation')
-    print(attrib[lst].std().round(decimals=2))
-
-    plt.title(place+' Overall Attributes')
-    plt.bar(attrib_mean.index, attrib_mean.values)
-    plt.ylim([0,0.65])
-    if filename is not None:
-        plt.savefig('../plots/'+filename)
-    if display:
-        plt.show()
-
+# Import the data
 nyc_registry = pd.read_csv('../dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
 coren = pd.read_csv('../dogdata/coren-edit.csv')
 nyc_census = pd.read_csv('../censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 2016 data
@@ -30,9 +16,38 @@ adelaide_registry = pd.read_csv('../dogdata/Dog_Registrations_Adelaide_2016-edit
 wiki = pd.read_csv('../dogdata/wiki-edit.csv')
 turcsan = pd.read_csv('../dogdata/turcsan.csv')
 
+# List of categories
 lst = ['Bold','Calm', 'Obedient','Sociable', 'Trainable']
+# Pare down the Coren data
 coren = coren[['Breed', 'Obedient']]
+# Combine the Coren and Turcsan datasets
 attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
+
+
+def describe(df, categ, filename=None, display=True):
+    """[summary]
+    
+    Arguments:
+        df {DataFrame} -- DataFrame to describe
+        categ {} -- [description]
+    
+    Keyword Arguments:
+        filename {[type]} -- [description] (default: {None})
+        display {bool} -- [description] (default: {True})
+    """
+    print('\n'+categ+' Mean')
+    attrib_mean = df[lst].mean()
+    print(attrib_mean.round(decimals=2))
+    print('\n'+categ+' Standard Deviation')
+    print(attrib[lst].std().round(decimals=2))
+
+    plt.title(categ+' Overall Attributes')
+    plt.bar(attrib_mean.index, attrib_mean.values)
+    plt.ylim([0,0.65])
+    if filename is not None:
+        plt.savefig('../plots/'+filename)
+    if display:
+        plt.show()
 
 def describe_breeds(save=False):
     wiki_breeds = set(wiki['Breed'].tolist())
