@@ -16,8 +16,8 @@ adelaide_registry = pd.read_csv('../dogdata/Dog_Registrations_Adelaide_2016-edit
 wiki = pd.read_csv('../dogdata/wiki-edit.csv')
 turcsan = pd.read_csv('../dogdata/turcsan.csv')
 
-# List of categories
-lst = ['Bold','Calm', 'Obedient','Sociable', 'Trainable']
+# List of attributes
+lst = ['Bold', 'Calm', 'Obedient','Sociable', 'Trainable']
 # Pare down the Coren data
 coren = coren[['Breed', 'Obedient']]
 # Combine the Coren and Turcsan datasets
@@ -190,7 +190,6 @@ nyc_attrib = nyc_registry.set_index('BreedName').join(attrib, how='left')
 nyc_attrib = nyc_attrib[['Borough','Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']]
 dogs_by_borough()
 
-
 # Perform Chi-Square analysis on NYC data
 chi2_breed = ['Yorkshire Terrier', 'Shih Tzu','Chihuahua', 'Maltese', 'Labrador Retriever']
 chi2_breed_com = itertools.combinations(chi2_breed, 2)
@@ -209,7 +208,6 @@ adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='l
 describe(adelaide_attrib, 'Adelaide')
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
 describe(edmonton_attrib, 'Edmonton')
-
 
 # Looking at the UK and Ireland
 ancestral = wiki[['Breed', 'Origin']]
