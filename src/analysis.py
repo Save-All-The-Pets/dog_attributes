@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import itertools
 
 # Import the data
@@ -207,6 +208,33 @@ adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='l
 describe(adelaide_attrib, 'Adelaide')
 edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
 describe(edmonton_attrib, 'Edmonton')
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+adelaide_mean = adelaide_attrib[lst].mean()
+edmonton_mean = edmonton_attrib[lst].mean()
+nyc_mean = nyc_attrib[lst].mean()
+
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+xs = np.arange(5)
+ys = adelaide_mean.values
+cs = 'r' * 5
+ax.bar(xs, ys, zs=5, zdir='y', color=cs, alpha=0.8)
+ys = edmonton_mean.values
+cs = 'g' * 5
+ax.bar(xs, ys, zs=3, zdir='y', color=cs, alpha=0.8)
+ys = nyc_mean.values
+cs = 'b' * 5
+ax.bar(xs, ys, zs=1, zdir='y', color=cs, alpha=0.8)
+
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
+plt.show()
 
 # Looking at the UK and Ireland
 ancestral = wiki[['Breed', 'Origin']]
