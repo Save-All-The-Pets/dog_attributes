@@ -22,11 +22,11 @@ There's much more to explore with this data. I may take a stab at some of the fo
 
 * New York voter registration information is public, so it might be interesting to correlate what kinds of dogs Republicans, Democrats, and Independent voters prefer.
 
-Academics have already looked at genetic markers, but it might be interesting to look at genetic markers by location.
+* Academics have already looked at genetic markers, but it might be interesting to look at genetic markers by location.
 
-I did not disaggregate German dogs, so it might be interesting to look at aspects of German dogs (perhaps where in Germany they are from ancestrally) to see if there is more of interest.
+* I did not disaggregate German dogs, so it might be interesting to look at aspects of German dogs (perhaps where in Germany they are from ancestrally) to see if there is more of interest.
 
-I did not dig into census data, including the census tract-level statistics for NYC.
+* I did not dig into census data, including the census tract-level statistics for NYC.
 
 ## Sources
 
