@@ -18,7 +18,9 @@ I performed a Chi-square test to determine if a person's borough is statisticall
 
 ## For future study
 
-New York voter registration information is public, so it might be interesting to correlate what kinds of dogs Republicans, Democrats, and Independent voters prefer.
+There's much more to explore with this data. I may take a stab at some of the following, but others are also welcome to join in:
+
+* New York voter registration information is public, so it might be interesting to correlate what kinds of dogs Republicans, Democrats, and Independent voters prefer.
 
 Academics have already looked at genetic markers, but it might be interesting to look at genetic markers by location.
 
@@ -34,7 +36,7 @@ I did not dig into census data, including the census tract-level statistics for 
 
 [Edmonton Dog Licenses Dataset](https://data.edmonton.ca/Community-Services/Pet-Licenses-by-Neighbourhood/5squ-mg4w)
 
-[Data on canine intelligence, including by Stanley Coren](https://data.world/len/intelligence-of-dogs)
+[Data on canine intelligence](https://data.world/len/intelligence-of-dogs) by Stanley Coren and others
 
 [Trainability and boldness traits differ between dog breed clusters based on conventional breed categories and genetic relatedness](https://www.researchgate.net/publication/228485434_Trainability_and_boldness_traits_differ_between_dog_breed_clusters_based_on_conventional_breed_categories_and_genetic_relatedness) by Borbála Turcsán, Enikő Kubinyi, Ádám Miklósi
 
