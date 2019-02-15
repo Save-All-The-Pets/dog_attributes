@@ -41,9 +41,8 @@ Compliance could affect the data; certain dog owners may be less likely to regis
 
 Further research on dogs in the UK: [Estimation of the number and demographics of companion dogs in the UK by Lucy Asher, Emma L Buckland, C Ianthi Phylactopoulos, Martin C Whiting, Siobhan M Abeyesinghe and Christopher M Wathes](https://bmcvetres.biomedcentral.com/articles/10.1186/1746-6148-7-74)
 
-## Acknowledgements
 
-
+![Alternate text](plots/akc.png)
 
 
 TO DO:

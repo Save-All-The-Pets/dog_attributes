@@ -16,18 +16,18 @@ import itertools
 # plotly.tools.set_config_file(world_readable=False,
 #                              sharing='private')
 
-nyc_registry = pd.read_csv('dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
-coren = pd.read_csv('dogdata/coren-edit.csv')
-nyc_census = pd.read_csv('censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 2016 data
-edmonton_registry = pd.read_csv('dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
-adelaide_registry = pd.read_csv('dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
-wiki = pd.read_csv('dogdata/wiki-edit.csv')
-turcsan = pd.read_csv('dogdata/turcsan.csv')
+nyc_registry = pd.read_csv('../dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
+coren = pd.read_csv('../dogdata/coren-edit.csv')
+nyc_census = pd.read_csv('../censusdata/ACS_16_1YR_S0201_with_ann-edit.csv') # use 2016 data
+edmonton_registry = pd.read_csv('../dogdata/Edmonton_Pet_Licenses_by_Neighbourhood_2018-edit.csv')
+adelaide_registry = pd.read_csv('../dogdata/Dog_Registrations_Adelaide_2016-edit.csv')
+wiki = pd.read_csv('../dogdata/wiki-edit.csv')
+turcsan = pd.read_csv('../dogdata/turcsan.csv')
 
 coren = coren[['Breed', 'Obedient']]
 attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
-lst = ['Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']
+lst = ['Bold','Calm', 'Obedient','Sociable', 'Trainable']
 
 wiki_breeds = set(wiki['Breed'].tolist())
 coren_breeds = set(coren['Breed'].tolist())
@@ -65,31 +65,24 @@ pprint(akc_std)
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
 
-fig, ax = plt.subplots()
-plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor') 
-ax.plot(akc.index, akc['Bold'])
-ax.plot(akc.index, akc['Calm'])
-ax.plot(akc.index, akc['Obedient'])
-ax.plot(akc.index, akc['Sociable'])
-ax.plot(akc.index, akc['Trainable'])
 
-plt.gcf().subplots_adjust(bottom=0.3, right=.75)
-plt.legend(loc=(1.04,0.6))
-plt.title('Scores by AKC Grouping')
-ax.set_ylabel('Score')
-ax.set_xlabel('AKC Grouping')
-# plt.savefig('plots/akc.png')
-plt.show()
+def plot_by_attrib(df, categ,label, filename=None, display=True):
+    fig, ax = plt.subplots()
+    plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor')
+    for item in lst:
+        ax.plot(df.index, df[item])
 
+    plt.gcf().subplots_adjust(bottom=0.3, right=.75)
+    plt.legend(loc=(1.04,0.6))
+    plt.title('Scores by '+ label)
+    ax.set_ylabel('Score')
+    ax.set_xlabel(label)
+    if filename is not None:
+        plt.savefig(filename)
+    if display:
+        plt.show()
 
-# # Make the census columns understandable
-# val = 'EST_'
-# err = 'MOE_'
-# age_under_5 = 'VC16'
-# age_5_17 = 'VC17'; age_18_24 = 'VC18'
-# age_25_34 = 'VC19'; age_35_44 = 'VC20'
-# age_45_54 = 'VC21'; age_55_64 = 'VC22'
-# age_65_74 = 'VC23'; age_75_over = 'VC24'
+plot_by_attrib(akc, lst, 'AKC Grouping')
 
 # Strip out dirty values
 nyc_registry['Borough'] = nyc_registry['Borough'].map(lambda x: None if x not in {'Brooklyn', 'Bronx', 'Staten Island', 'Manhattan', 'Queens'} else x)
@@ -108,40 +101,29 @@ pprint(nyc_attrib_g.std().round(decimals=2))
 print('\nNYC Count:')
 pprint(nyc_attrib_g.count())
 
-fig, ax = plt.subplots()
-plt.xticks(rotation=45)
-ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Bold'])
-ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Calm'])
-ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Obedient'])
-ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Sociable'])
-ax.plot(nyc_attrib_mean.index, nyc_attrib_mean['Trainable'])
 
-plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right', rotation_mode='anchor') 
-plt.gcf().subplots_adjust(bottom=0.3, right=.75)
-plt.legend(loc=(1.04,0.6))
-plt.title('Scores by Borough in NYC')
-ax.set_ylabel('Score')
-ax.set_xlabel('Borough')
-# plt.savefig('plots/borough.png')
-plt.show()
 
-nyc_breeds = nyc_registry[['Borough', 'BreedName']]
-print('\nTop Dogs Count')
-pprint(nyc_breeds['BreedName'].value_counts().nlargest(5))
-nyc_breeds_grp = nyc_breeds.groupby('Borough')
-# Most popular breeds by Borough
-n = False # Whether or not to normalize values
-print('\nTop Dogs By Borough')
-print('\nManhattan')
-print(nyc_breeds_grp.get_group('Manhattan')['BreedName'].value_counts(normalize=n).head(5))
-print('\nQueens')
-print(nyc_breeds_grp.get_group('Queens')['BreedName'].value_counts(normalize=n).head(5))
-print('\nStaten Island')
-print(nyc_breeds_grp.get_group('Staten Island')['BreedName'].value_counts(normalize=n).head(5))
-print('\nBrooklyn')
-print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts(normalize=n).head(5))
-print('\nBronx')
-print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts(normalize=n).head(5))
+plot_by_attrib(nyc_attrib_mean, lst, 'NYC Borough')
+
+
+def dogs_by_borough(n=False):
+    nyc_breeds = nyc_registry[['Borough', 'BreedName']]
+    print('\nTop Dogs Count')
+    pprint(nyc_breeds['BreedName'].value_counts().nlargest(5))
+    nyc_breeds_grp = nyc_breeds.groupby('Borough')
+    print('\nTop Dogs By Borough')
+    print('\nManhattan')
+    print(nyc_breeds_grp.get_group('Manhattan')['BreedName'].value_counts(normalize=n).head(5))
+    print('\nQueens')
+    print(nyc_breeds_grp.get_group('Queens')['BreedName'].value_counts(normalize=n).head(5))
+    print('\nStaten Island')
+    print(nyc_breeds_grp.get_group('Staten Island')['BreedName'].value_counts(normalize=n).head(5))
+    print('\nBrooklyn')
+    print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts(normalize=n).head(5))
+    print('\nBronx')
+    print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts(normalize=n).head(5))
+
+dogs_by_borough()
 
 
 # NYC Overall 
@@ -152,7 +134,7 @@ nyc_attrib_overall = nyc_attrib[lst]
 nyc_attrib_overall = nyc_attrib.mean()
 plt.bar(nyc_attrib_overall.index, nyc_attrib_overall.values)
 plt.ylim([0,0.65])
-plt.savefig('plots/nyc_overall.png')
+plt.savefig('../plots/nyc_overall.png')
 plt.show()
 
 
@@ -182,7 +164,6 @@ plt.title('Adelaide Overall Attributes')
 plt.bar(adelaide_attrib_mean.index, adelaide_attrib_mean.values)
 plt.ylim([0,0.65])
 plt.savefig('plots/adelaide_overall.png')
-
 plt.show()
 
 # Edmonton
@@ -292,6 +273,3 @@ ax.set_ylabel('Score')
 ax.set_xlabel('Country')
 # plt.savefig('plots/ancestry.png')
 plt.show()
-
-# data = [ancestral_attrib_mean_filtered.index, ancestral_attrib_mean_filtered['Bold']]
-# py.plot(data, filename = 'basic-line', auto_open=True)
