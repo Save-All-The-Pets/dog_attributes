@@ -174,6 +174,7 @@ pprint(akc)
 print('\nAKC Standard Deviation')
 akc_std = akc_groups_attrib.groupby('AKC').std().round(decimals=2)
 pprint(akc_std)
+print('\nAKC Count')
 akc_count = akc_groups_attrib.groupby('AKC').count()
 pprint(akc_count)
 
