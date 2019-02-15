@@ -1,7 +1,3 @@
-# Note on the code
-
-This code should be ready to use; however, if you don't have the fuzzing add-on `fuzzywuzzy` you can either run the `src/analysis-nofuzzy.py` file or install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`. Note that it is not necessary to install it.
-
 # Study Design
 
 In this study, I'm negotiating the line between making this data publicly accessible (and fun) and ensuring I'm applying analytic rigor. While this study won't be published in an academic journal, I'm transparently including my code and datasets so that those interested can tweak them and discover their own trends.
@@ -27,6 +23,10 @@ There's much more to explore with this data. I may take a stab at some of the fo
 * I did not disaggregate German dogs, so it might be interesting to look at aspects of German dogs (perhaps where in Germany they are from ancestrally) to see if there is more of interest.
 
 * I did not dig into census data, including the census tract-level statistics for NYC.
+
+## Note on the code
+
+This code should be ready to use; however, if you don't have the fuzzing add-on `fuzzywuzzy` you can either run the `src/analysis-nofuzzy.py` file or install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`. Note that it is not necessary to install it.
 
 ## Sources
 
