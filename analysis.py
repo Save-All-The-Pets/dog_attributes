@@ -5,6 +5,7 @@ from scipy import stats
 import sys
 from fuzzywuzzy import process
 import matplotlib.pyplot as plt
+import itertools
 # import plotly
 # import plotly.plotly as py
 # import plotly.graph_objs as go
@@ -151,6 +152,20 @@ nyc_attrib_overall = nyc_attrib.mean()
 plt.bar(nyc_attrib_overall.index, nyc_attrib_overall.values)
 # plt.savefig('plots/nyc_overall.png')
 plt.show()
+
+
+# Perform Chi-Square analysis on NYC data
+chi2_breed = ['Yorkshire Terrier', 'Shih Tzu','Chihuahua', 'Maltese', 'Labrador Retriever']
+chi2_breed_com = itertools.combinations(chi2_breed, 2)
+
+nyc_breeds_5 = nyc_registry[nyc_registry['BreedName'].isin(chi2_breed)] #top 5 breeds overall
+for i in chi2_breed_com:
+    print(i)
+    nyc_breeds_2 = nyc_registry[nyc_registry['BreedName'].isin(i)]
+    contingency_table = pd.crosstab(nyc_breeds_2['BreedName'], nyc_breeds_5['Borough'])
+    nyc_chi2 = stats.chi2_contingency(contingency_table)
+    print('\nTest statistic: {}'.format(nyc_chi2[0].round(2)))
+    print('P-value: {}'.format(nyc_chi2[1]))
 
 
 # Adelaide
