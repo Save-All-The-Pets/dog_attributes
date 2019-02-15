@@ -1,6 +1,6 @@
 # Study Design
 
-In this study, I'm negotiating the line between making this data publicly accessible (and fun) and ensuring I'm applying analytic rigor. While this study won't be published in an academic journal, I'm transparently including my code and datasets so that those interested can tweak them and discover their own trends.
+This study explores dog registration record data from NYC, Edmonton, and Adelaide and combines this data with data about particular attributes of dogs (for example, how bold or trainable they are.) In this study, I'm negotiating the line between making this data publicly accessible (and fun) and ensuring I'm applying analytic rigor. While this study won't be published in an academic journal, I'm transparently including my code and datasets so that those interested can tweak them and discover their own trends.
 
 ## Variables evaluated
 
