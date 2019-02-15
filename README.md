@@ -24,7 +24,7 @@ There's much more to explore with this data. I may take a stab at some of the fo
 
 * I did not dig into census data, including the census tract-level statistics for NYC.
 
-## Note on the code 
+## Note on the code
 
 This code should be ready to use; however, if you don't have the fuzzing add-on `fuzzywuzzy` you can either run the `src/analysis-nofuzzy.py` file or install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`. Note that it is not necessary to install it.
 
