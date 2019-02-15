@@ -1,6 +1,6 @@
 # Note on the code
 
-This code should be ready to use; however, if you don't have the fuzzing add-on `fuzzywuzzy` you can either run the `analysis-nofuzz.py` file or install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`. Note that it is not necessary to install it.
+This code should be ready to use; however, if you don't have the fuzzing add-on `fuzzywuzzy` you can either run the `src/analysis-nofuzzy.py` file or install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`. Note that it is not necessary to install it.
 
 # Study Design
 
