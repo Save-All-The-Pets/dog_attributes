@@ -25,7 +25,6 @@ Further analyze German dogs, since there are several.
 Staten Island census data is unavailable
 (For lowest category of dog intelligence, "obey" was not specified. I am assigning a value of 0.10)
 Edmonton had almost no data for 2016 and very little for 2017, so I'm using 2018 data.
-Removing "miniature" from the dataset.
 For further research, someone could use the census tract data in the NYC dataset.
 Pulling data from Wikipedia, of course, allows for a small margin of error in the data; however, the data is usually accurate.
 Terriers and Toy Terriers were treated as Terriers and Toys in the AKC rankings.
