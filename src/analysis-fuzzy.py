@@ -2,6 +2,7 @@ from pprint import pprint
 import pandas as pd
 import numpy as np
 from scipy import stats
+from fuzzywuzzy import process
 import matplotlib.pyplot as plt
 import itertools
 

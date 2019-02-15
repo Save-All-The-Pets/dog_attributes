@@ -26,7 +26,7 @@ There's much more to explore with this data. I may take a stab at some of the fo
 
 ## Note on the code
 
-This code should be ready to use; however, if you don't have the fuzzing add-on `fuzzywuzzy` you can either run the `src/analysis-nofuzzy.py` file or install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`. Note that it is not necessary to install it.
+This code should be ready to use; you can edit/run `analysis.py` from the `src` directory. In another file, I used the  fuzzing add-on `fuzzywuzzy`. You can run the `src/analysis-fuzzy.py` file, but you may need to install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`.
 
 ## Sources
 
