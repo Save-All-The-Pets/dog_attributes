@@ -51,7 +51,9 @@ Terriers and Toy Terriers were treated as Terriers and Toys in the AKC rankings.
 American/English Cocker Spaniel
 Compliance could affect the data; certain dog owners may be less likely to register their dogs even though it's required in all three localities.
 
+## Contact the author
 
+Please direct any correspondence to Michael Suttles at: git at mgs.33mail.com.
 
 TO DO:
 
