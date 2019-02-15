@@ -20,15 +20,17 @@ Academics have already looked at genetic markers, but it might be interesting to
 
 I did not disaggregate German dogs, so it might be interesting to look at aspects of German dogs (perhaps where in Germany they are from ancestrally) to see if there is more of interest.
 
+I did not dig into census data, including the census tract-level statistics for NYC.
+
 ## Sources
 
 [City of Adelaide Dog Registrations](https://data.gov.au/dataset/ds-sa-8aa33af5-4146-447e-b9e9-0c00b616cd38/details)
 
 [NYC Dog Licensing Dataset](https://data.cityofnewyork.us/Health/NYC-Dog-Licensing-Dataset/nu7n-tubp)
 
-[Edmonton Dog Licences Dataset](https://data.edmonton.ca/Community-Services/Pet-Licenses-by-Neighbourhood/5squ-mg4w)
+[Edmonton Dog Licenses Dataset](https://data.edmonton.ca/Community-Services/Pet-Licenses-by-Neighbourhood/5squ-mg4w)
 
-[Data on Canine Intelligence, including by Stanley Coren](https://data.world/len/intelligence-of-dogs)
+[Data on canine intelligence, including by Stanley Coren](https://data.world/len/intelligence-of-dogs)
 
 [Trainability and boldness traits differ between dog breed clusters based on conventional breed categories and genetic relatedness](https://www.researchgate.net/publication/228485434_Trainability_and_boldness_traits_differ_between_dog_breed_clusters_based_on_conventional_breed_categories_and_genetic_relatedness) by Borbála Turcsán, Enikő Kubinyi, Ádám Miklósi
 
@@ -37,7 +39,7 @@ Further research on dogs in the UK: [Estimation of the number and demographics o
 ## Notes on the data
 
 Staten Island census data is unavailable
-(For lowest category of dog intelligence, "obey" was not specified. I am assigning a value of 0.10)
+For lowest category of dog intelligence, "obey" was not specified. I am assigning a value of 0.10
 Edmonton had almost no data for 2016 and very little for 2017, so I'm using 2018 data.
 For further research, someone could use the census tract data in the NYC dataset.
 Pulling data from Wikipedia, of course, allows for a small margin of error in the data; however, the data is usually accurate.
