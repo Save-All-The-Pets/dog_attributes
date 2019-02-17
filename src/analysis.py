@@ -5,6 +5,10 @@ from scipy import stats
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import itertools
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+from statsmodels.stats.multicomp import MultiComparison
+
+
 
 # Import the data
 nyc_registry = pd.read_csv('../dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
@@ -104,39 +108,6 @@ def plot_by_attrib(df, categ,label, filename=None, display=True):
     if display:
         plt.show()
 
-def dogs_by_borough(n=False, display=True):
-    """Print information about dogs in NYC by borough. Optionally plot a graph.
-    
-    Keyword Arguments:
-        n {bool} -- Whether or not to normalize the data (default: {False})
-        display {bool} -- Whether or not to plot a graph by borough (default: {True})
-    """
-    nyc_attrib_g = nyc_attrib.groupby('Borough')
-    print('\nNYC Mean:')
-    nyc_attrib_g_mean = nyc_attrib_g.mean()
-    pprint(nyc_attrib_g_mean.round(decimals=2))
-    print('\nNYC Standard Deviation:')
-    pprint(nyc_attrib_g.std().round(decimals=2))
-    print('\nNYC Count:')
-    pprint(nyc_attrib_g.count())
-    if display:
-        plot_by_attrib(nyc_attrib_g_mean, lst, 'NYC Borough')
-
-    nyc_breeds = nyc_registry[['Borough', 'BreedName']]
-    print('\nTop Dogs Count')
-    pprint(nyc_breeds['BreedName'].value_counts().nlargest(5))
-    nyc_breeds_grp = nyc_breeds.groupby('Borough')
-    print('\nTop Dogs By Borough')
-    print('\nManhattan')
-    print(nyc_breeds_grp.get_group('Manhattan')['BreedName'].value_counts(normalize=n).head(5))
-    print('\nQueens')
-    print(nyc_breeds_grp.get_group('Queens')['BreedName'].value_counts(normalize=n).head(5))
-    print('\nStaten Island')
-    print(nyc_breeds_grp.get_group('Staten Island')['BreedName'].value_counts(normalize=n).head(5))
-    print('\nBrooklyn')
-    print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts(normalize=n).head(5))
-    print('\nBronx')
-    print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts(normalize=n).head(5))
 
 def splitDataFrameList(df,target_column,separator):
     """Thanks to James Allen, https://gist.github.com/jlln/338b4b0b55bd6984f883
@@ -186,9 +157,36 @@ nyc_registry['BreedName'] = nyc_registry['BreedName'].map(lambda x: None if x ==
 nyc_registry.dropna(inplace=True)
 
 # Display breed attributes by NYC borough
+display = False
+n=False # Do not normalize
 nyc_attrib = nyc_registry.set_index('BreedName').join(attrib, how='left')
 nyc_attrib = nyc_attrib[['Borough','Calm', 'Trainable', 'Sociable', 'Bold', 'Obedient']]
-dogs_by_borough()
+nyc_attrib_g = nyc_attrib.groupby('Borough')
+print('\nNYC Mean:')
+nyc_attrib_g_mean = nyc_attrib_g.mean()
+pprint(nyc_attrib_g_mean.round(decimals=2))
+print('\nNYC Standard Deviation:')
+pprint(nyc_attrib_g.std().round(decimals=2))
+print('\nNYC Count:')
+pprint(nyc_attrib_g.count())
+if display:
+    plot_by_attrib(nyc_attrib_g_mean, lst, 'NYC Borough')
+
+nyc_breeds = nyc_registry[['Borough', 'BreedName']]
+print('\nTop Dogs Count')
+pprint(nyc_breeds['BreedName'].value_counts().nlargest(5))
+nyc_breeds_grp = nyc_breeds.groupby('Borough')
+print('\nTop Dogs By Borough')
+print('\nManhattan')
+print(nyc_breeds_grp.get_group('Manhattan')['BreedName'].value_counts(normalize=n).head(5))
+print('\nQueens')
+print(nyc_breeds_grp.get_group('Queens')['BreedName'].value_counts(normalize=n).head(5))
+print('\nStaten Island')
+print(nyc_breeds_grp.get_group('Staten Island')['BreedName'].value_counts(normalize=n).head(5))
+print('\nBrooklyn')
+print(nyc_breeds_grp.get_group('Brooklyn')['BreedName'].value_counts(normalize=n).head(5))
+print('\nBronx')
+print(nyc_breeds_grp.get_group('Bronx')['BreedName'].value_counts(normalize=n).head(5))
 
 # Perform Chi-Square analysis on NYC data
 chi2_breed = ['Yorkshire Terrier', 'Shih Tzu','Chihuahua', 'Maltese', 'Labrador Retriever']
@@ -201,6 +199,16 @@ for i in chi2_breed_com:
     nyc_chi2 = stats.chi2_contingency(contingency_table)
     print('Test statistic: {}'.format(nyc_chi2[0].round(2)))
     print('P-value: {}'.format(nyc_chi2[1].round(4)))
+
+# Perform t-tests on NYC data
+print('Hypothesis 1: dogs from Staten Island are bolder than other dogs in New York.')
+
+non_staten = nyc_breeds[nyc_breeds['Borough'].isin('Manhattan', 'Queens', 'Bronx', 'Brooklyn')]
+non_staten_bold = non_staten['Bold']
+staten = nyc_breeds[nyc_breeds['Borough'] == 'Staten Island']
+staten_bold = staten['Bold']
+
+print(stats.ttest_ind(staten_bold, non_staten_bold, equal_var = False))
 
 # Show data on NYC, Adelaide, and Edmonton
 describe(nyc_attrib, 'NYC')
@@ -232,10 +240,6 @@ ax1.bar(xs, ys, zs=1, zdir='y', color=cs, alpha=0.8)
 
 ax1.w_xaxis.set_ticklabels(lst)
 ax1.w_yaxis.set_ticklabels(['Adelaide','Edmonton','NYC'])
-
-ax1.set_xlabel('X')
-ax1.set_ylabel('Scores')
-ax1.set_zlabel('Z')
 
 plt.show()
 
@@ -270,9 +274,9 @@ ancestral_attrib_count = ancestral_attrib_grp.count()
 ancestral_attrib_mean =  ancestral_attrib_grp.mean().round(decimals=2)
 
 # Only display values where there is more than one dog
-ancestral_attrib_mean_filtered = ancestral_attrib_mean[ancestral_attrib_count['Bold'] > 1]
+ancestral_attrib_mean_filtered = ancestral_attrib_mean[ancestral_attrib_count['Bold'] > 2]
 
-print('\nAncestral Origin Mean, n>1')
+print('\nAncestral Origin Mean, n>2')
 pprint(ancestral_attrib_mean_filtered)
 print('\nAncestral Origin Standard Deviation')
 pprint(ancestral_attrib_grp.std().round(decimals=2).dropna())
