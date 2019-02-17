@@ -201,20 +201,36 @@ for i in chi2_breed_com:
     print('P-value: {}'.format(nyc_chi2[1].round(4)))
 
 # Perform t-tests on NYC data
-print('Hypothesis 1: dogs from Staten Island are bolder than other dogs in New York.')
+print('Alternative Hypothesis 1: dogs from Staten Island are bolder than other dogs in New York.')
 
-non_staten = nyc_breeds[nyc_breeds['Borough'].isin('Manhattan', 'Queens', 'Bronx', 'Brooklyn')]
+non_staten = nyc_attrib[nyc_attrib['Borough'].isin(['Manhattan', 'Queens', 'Bronx', 'Brooklyn'])]
+non_staten.dropna(inplace=True)
+print(non_staten)
 non_staten_bold = non_staten['Bold']
-staten = nyc_breeds[nyc_breeds['Borough'] == 'Staten Island']
+staten = nyc_attrib[nyc_attrib['Borough'] == 'Staten Island']
+staten.dropna(inplace=True)
 staten_bold = staten['Bold']
-
 print(stats.ttest_ind(staten_bold, non_staten_bold, equal_var = False))
+
+print('Alternative Hypothesis 2: dogs from Staten Island are calmer than other dogs in New York.')
+non_staten_calm = non_staten['Calm']
+staten_calm = staten['Calm']
+print(stats.ttest_ind(staten_calm, non_staten_calm, equal_var = False))
+
+print('Alternative Hypothesis 3: dogs from New York are bolder than dogs in Adelaide and Edmonton.')
+adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
+edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
+nyc_bold = nyc_attrib['Bold']
+nyc_bold.dropna(inplace=True)
+ad_ed_attrib = pd.concat([adelaide_attrib, edmonton_attrib])
+ad_ed_bold = ad_ed_attrib['Bold']
+ad_ed_bold.dropna(inplace=True)
+print(stats.ttest_ind(nyc_bold, ad_ed_bold, equal_var = False))
+
 
 # Show data on NYC, Adelaide, and Edmonton
 describe(nyc_attrib, 'NYC')
-adelaide_attrib = adelaide_registry.set_index('AnimalBreed').join(attrib, how='left')
 describe(adelaide_attrib, 'Adelaide')
-edmonton_attrib = edmonton_registry.set_index('BREED').join(attrib, how='left')
 describe(edmonton_attrib, 'Edmonton')
 
 fig = plt.figure()
