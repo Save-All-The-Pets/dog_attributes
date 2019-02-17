@@ -8,8 +8,6 @@ import itertools
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 from statsmodels.stats.multicomp import MultiComparison
 
-
-
 # Import the data
 nyc_registry = pd.read_csv('../dogdata/NYC_Dog_Licensing_Dataset_2016-edit.csv')
 coren = pd.read_csv('../dogdata/coren-edit.csv')
@@ -27,7 +25,7 @@ coren = coren[['Breed', 'Obedient']]
 attrib = coren.set_index('Breed').join(turcsan.set_index('Breed'), how='outer')
 
 
-def describe(df, categ, filename=None, display=True):
+def describe(df, categ, filename=None, display=False):
     """Show the mean and standard deviation of the data and optionally plot. Optionally save a file of the plot.
     
     Arguments:
@@ -36,7 +34,7 @@ def describe(df, categ, filename=None, display=True):
     
     Keyword Arguments:
         filename {str} -- Name of file to save to (default: {None})
-        display {bool} -- Whether or not to display a plot (default: {True})
+        display {bool} -- Whether or not to display a plot (default: {False})
     """
     print('\n'+categ+' Mean')
     attrib_mean = df[lst].mean()
@@ -75,12 +73,6 @@ def describe_breeds(save=False):
     print('\nDifference, Coren - Wiki')
     print(coren_breeds - wiki_breeds)
 
-    if save:
-        comparison = wiki[['Breed']]
-        comparison['Turcsan'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(turcsan_breeds)) if x not in turcsan_breeds else '')
-        comparison['Coren'] = comparison['Breed'].apply(lambda x: process.extractOne(x, list(coren_breeds)) if x not in coren_breeds else '')
-        comparison.to_csv('../dogdata/comparisons.csv')
-
 def plot_by_attrib(df, categ,label, filename=None, display=True):
     """Plot a graph by the attributes provided.
     
@@ -106,7 +98,8 @@ def plot_by_attrib(df, categ,label, filename=None, display=True):
     if filename is not None:
         plt.savefig('../plots/'+filename)
     if display:
-        plt.show()
+#        plt.show()
+        pass
 
 
 def splitDataFrameList(df,target_column,separator):
@@ -233,31 +226,28 @@ describe(nyc_attrib, 'NYC')
 describe(adelaide_attrib, 'Adelaide')
 describe(edmonton_attrib, 'Edmonton')
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
 adelaide_mean = adelaide_attrib[lst].mean()
 edmonton_mean = edmonton_attrib[lst].mean()
 nyc_mean = nyc_attrib[lst].mean()
 
 
-fig1 = plt.figure()
-ax1 = fig.add_subplot(111, projection='3d')
-xs = np.arange(5)
-ys = adelaide_mean.values
-cs = 'r' * 5
-ax1.bar(xs, ys, zs=3, zdir='y', color=cs, alpha=0.8)
-ys = edmonton_mean.values
-cs = 'g' * 5
-ax1.bar(xs, ys, zs=2, zdir='y', color=cs, alpha=0.8 )
-ys = nyc_mean.values
-cs = 'b' * 5
-ax1.bar(xs, ys, zs=1, zdir='y', color=cs, alpha=0.8)
+# fig1 = plt.figure()
+# ax1 = fig1.add_subplot(111, projection='3d')
+# xs = np.arange(5)
+# ys = adelaide_mean.values
+# cs = 'r' * 5
+# ax1.bar(xs, ys, zs=3, zdir='y', color=cs, alpha=0.8)
+# ys = edmonton_mean.values
+# cs = 'g' * 5
+# ax1.bar(xs, ys, zs=2, zdir='y', color=cs, alpha=0.8 )
+# ys = nyc_mean.values
+# cs = 'b' * 5
+# ax1.bar(xs, ys, zs=1, zdir='y', color=cs, alpha=0.8)
 
-ax1.w_xaxis.set_ticklabels(lst)
-ax1.w_yaxis.set_ticklabels(['Adelaide','Edmonton','NYC'])
+# ax1.w_xaxis.set_ticklabels(lst)
+# ax1.w_yaxis.set_ticklabels(['Adelaide','Edmonton','NYC'])
 
-plt.show()
+# plt.show()
 
 # Looking at the UK and Ireland
 ancestral = wiki[['Breed', 'Origin']]
@@ -301,3 +291,14 @@ pprint(ancestral_attrib_count)
 
 # Plot by country of origin
 plot_by_attrib(ancestral_attrib_mean_filtered, lst, 'Country of Origin')
+
+print('Alternative Hypothesis 4: Dogs with ancestry from the UK are bolder than other dogs.')
+ancestral_uk = ancestral_attrib2[ancestral_attrib2['Origin'].isin(['England', 'Scotland', 'Wales'])]
+ancestral_not_uk = ancestral_attrib2[~ancestral_attrib2['Origin'].isin(['England', 'Scotland', 'Wales'])]
+
+# print(ancestral_attrib2.mean())
+ancestral_uk_bold = ancestral_uk['Bold']
+ancestral_uk_bold.dropna(inplace=True)
+ancestral_not_uk_bold = ancestral_not_uk['Bold']
+ancestral_not_uk_bold.dropna(inplace=True)
+print(stats.ttest_ind(ancestral_uk_bold, ancestral_not_uk_bold, equal_var = False))
