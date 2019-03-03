@@ -33,6 +33,8 @@ This code should be ready to use; you can edit/run `analysis.py` from the `src` 
 
 [NYC Dog Licensing Dataset](https://data.cityofnewyork.us/Health/NYC-Dog-Licensing-Dataset/nu7n-tubp)
 
+[Seattle Pet Licenses](https://catalog.data.gov/dataset/seattle-pet-licenses)
+
 [Edmonton Dog Licenses Dataset](https://data.edmonton.ca/Community-Services/Pet-Licenses-by-Neighbourhood/5squ-mg4w)
 
 [Data on canine intelligence](https://data.world/len/intelligence-of-dogs) by Stanley Coren and others
