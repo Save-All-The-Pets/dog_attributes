@@ -8,7 +8,7 @@ I performed a Chi-square test to determine if a person's borough is statisticall
 
 ## Results
 
-<!-- For much more on this, please visit [Doggiedatazone.com](http://doggiedatazone.com) -->
+<!-- For much more on this, please visit [Doggydatazone.com](https://www.doggydatazone.com). -->
 ![AKC Data](plots/akc.png)
 
 ## For future study
@@ -19,7 +19,7 @@ There's much more to explore with this data. I may take a stab at some of the fo
 
 * Academics have already looked at genetic markers, but it might be interesting to look at genetic markers by location.
 
-* I did not disaggregate German dogs, so it might be interesting to look at aspects of German dogs (perhaps where in Germany they are from ancestrally) to see if there is more of interest.
+* I did not disaggregate ancestrally German dogs, so it might be interesting to look at aspects of German dogs (perhaps what part of Germany they are from ancestrally) to see if there is more of interest.
 
 * I did not dig into census data, including the census tract-level statistics for NYC.
 
@@ -33,7 +33,7 @@ This code should be ready to use; you can edit/run `analysis.py` from the `src` 
 
 [NYC Dog Licensing Dataset](https://data.cityofnewyork.us/Health/NYC-Dog-Licensing-Dataset/nu7n-tubp)
 
-[Seattle Pet Licenses](https://catalog.data.gov/dataset/seattle-pet-licenses)
+[Seattle Pet Licenses](https://data.seattle.gov/Community/Seattle-Pet-Licenses/jguv-t9rb)
 
 [Edmonton Dog Licenses Dataset](https://data.edmonton.ca/Community-Services/Pet-Licenses-by-Neighbourhood/5squ-mg4w)
 
