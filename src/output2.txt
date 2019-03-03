@@ -1,0 +1,335 @@
+
+Intersection, Wiki and Turcsan
+{'Saint Bernard', 'German Shepherd', 'Vizsla', 'Yorkshire Terrier', 'Giant Schnauzer', 'Bull Terrier', 'Miniature Poodle', 'Chihuahua', 'Beagle', 'Dachshund', 'Rhodesian Ridgeback', 'German Wirehaired Pointer', 'Border Terrier', 'Rottweiler', 'Standard Schnauzer', 'Irish Wolfhound', 'Shar Pei', 'Pointer', 'Shiba Inu', 'Shetland Sheepdog', 'Bernese Mountain Dog', 'Tibetan Terrier', 'Lhasa Apso', 'Jack Russell Terrier', 'Golden Retriever', 'German Shorthaired Pointer', 'Bearded Collie', 'Siberian Husky', 'Belgian Malinois', 'Alaskan Malamute', 'Australian Shepherd', 'Irish Setter', 'Poodle', 'Briard', 'Coton de Tulear', 'Cairn Terrier', 'Cavalier King Charles Spaniel', 'Shih Tzu', 'Brittany', 'Old English Sheepdog', 'Welsh Terrier', 'Polish Lowland Sheepdog', 'Airedale Terrier', 'Bulldog', 'Doberman Pinscher', 'Pug', 'English Setter', 'Weimaraner', 'American Staffordshire Terrier', 'Great Dane', 'Whippet', 'Beauceron', 'Staffordshire Bull Terrier', 'Ibizan Hound', 'Pekingese', 'Soft-Coated Wheaten Terrier', 'Irish Terrier', 'Maltese', 'French Bulldog', 'Gordon Setter', 'Boxer', 'Flat-Coated Retriever', 'Dalmatian', 'Labrador Retriever', 'Greater Swiss Mountain Dog', 'Border Collie'}
+
+Intersection, Wiki and Coren
+{'Welsh Springer Spaniel', 'Saint Bernard', 'German Shepherd', 'Giant Schnauzer', 'Border Terrier', 'Scottish Deerhound', 'Bedlington Terrier', 'Fox Terrier', 'Irish Water Spaniel', 'Basenji', 'American Foxhound', 'Irish Setter', 'Kuvasz', 'Affenpinscher', 'Cavalier King Charles Spaniel', 'Shih Tzu', 'Basset Hound', 'Great Pyrenees', 'Doberman Pinscher', 'Black and Tan Coonhound', 'Great Dane', 'Staffordshire Bull Terrier', 'Gordon Setter', 'Manchester Terrier', 'Akita', 'Skye Terrier', 'Vizsla', 'Yorkshire Terrier', 'Italian Greyhound', 'Bull Terrier', 'Dachshund', 'Rhodesian Ridgeback', 'German Wirehaired Pointer', 'Standard Schnauzer', 'Shiba Inu', 'Bernese Mountain Dog', 'Tibetan Terrier', 'Tibetan Spaniel', 'Jack Russell Terrier', 'German Shorthaired Pointer', 'Belgian Malinois', 'Siberian Husky', 'Chinese Crested', 'Borzoi', 'Briard', 'Brussels Griffon', 'Cardigan Welsh Corgi', 'Clumber Spaniel', 'Pug', 'Weimaraner', 'English Springer Spaniel', 'Whippet', 'Ibizan Hound', 'English Foxhound', 'Maltese', 'Puli', 'Flat-Coated Retriever', 'Dalmatian', 'West Highland White Terrier', 'Bullmastiff', 'Chow Chow', 'Australian Cattle Dog', 'Schipperke', 'Irish Wolfhound', 'Finnish Spitz', 'Shetland Sheepdog', 'Bouvier des Flandres', 'Golden Retriever', 'Bearded Collie', 'Alaskan Malamute', 'Poodle', 'Australian Shepherd', 'Sealyham Terrier', 'Belgian Sheepdog', 'Afghan Hound', 'Cairn Terrier', 'Boston Terrier', 'Airedale Terrier', 'Otter Hound', 'English Setter', 'American Staffordshire Terrier', 'Chesapeake Bay Retriever', 'Keeshond', 'French Bulldog', 'Norwegian Elkhound', 'Cocker Spaniel', 'Kerry Blue Terrier', 'Portuguese Water Dog', 'Pomeranian', 'Bloodhound', 'Newfoundland', 'Dandie Dinmont Terrier', 'Chihuahua', 'Beagle', 'Japanese Chin', 'Rottweiler', 'Shar Pei', 'Pointer', 'Petit Basset Griffon Vendeen', 'Scottish Terrier', 'Lhasa Apso', 'Field Spaniel', 'Brittany', 'American Water Spaniel', 'Welsh Terrier', 'Old English Sheepdog', 'Lakeland Terrier', 'Pharaoh Hound', 'Bulldog', 'Curly Coated Retriever', 'Saluki', 'Wirehaired Pointing Griffon', 'Pekingese', 'Soft-Coated Wheaten Terrier', 'Irish Terrier', 'Bichon Frise', 'Boxer', 'Labrador Retriever', 'Australian Terrier', 'Greyhound', 'Border Collie'}
+
+Difference, Wiki - Turcsan
+{'Welsh Springer Spaniel', 'Black Russian Terrier', 'Scottish Deerhound', 'Bedlington Terrier', 'Fox Terrier', 'Irish Water Spaniel', 'Basenji', 'American Foxhound', 'Kuvasz', 'Basset Hound', 'Affenpinscher', 'Great Pyrenees', 'Black and Tan Coonhound', 'Manchester Terrier', 'Akita', 'Skye Terrier', 'Italian Greyhound', 'Redbone Coonhound', 'Tibetan Spaniel', 'Chinese Crested', 'Canaan Dog', 'Borzoi', 'Spinone Italiano', 'Fox Terrier Smooth', 'Brussels Griffon', 'Clumber Spaniel', 'Cardigan Welsh Corgi', 'English Springer Spaniel', 'English Foxhound', 'Puli', 'West Highland White Terrier', 'Bullmastiff', 'Chow Chow', 'Australian Cattle Dog', 'Toy Poodle', 'Schipperke', 'Finnish Spitz', 'Bouvier des Flandres', 'German Pinscher', 'Belgian Tervuren', 'Sealyham Terrier', 'Belgian Sheepdog', 'Afghan Hound', 'Boston Terrier', 'Otter Hound', 'Chesapeake Bay Retriever', 'Keeshond', 'Norwegian Elkhound', 'Cocker Spaniel', 'Kerry Blue Terrier', 'Bloodhound', 'Portuguese Water Dog', 'Pomeranian', 'Newfoundland', 'Dandie Dinmont Terrier', 'Japanese Chin', 'Petit Basset Griffon Vendeen', 'Scottish Terrier', 'Field Spaniel', 'English Toy Spaniel', 'Sussex Spaniel', 'American Eskimo', 'Nova Scotia Duck Tolling Retriever', 'Komondor', 'American Water Spaniel', 'Lakeland Terrier', 'Pharaoh Hound', 'Silky Terrier', 'Curly Coated Retriever', 'Saluki', 'Wirehaired Pointing Griffon', 'Toy Fox Terrier', 'Bichon Frise', 'Tibetan Mastiff', 'Plott Hound', 'Australian Terrier', 'Greyhound'}
+
+Difference, Turcsan - Wiki
+{'American Cocker Spaniel', 'Appenzeller Sennenhund', 'Kromfohrlander', 'Wolfspitz', 'Pyrenean Shepherd', 'Parson Russell Terrier', 'Bavarian Mountain Hound', 'Wirehaired Dachshund', 'Entlebucher Mountain Dog', 'Hovawart', 'Havanese', 'White Swiss Shepherd', 'Miniature Dachshund', 'English Cocker Spaniel', 'West Highland Wheaten Terrier', 'Eurasier', 'German Hunting Terrier', 'Miniature Pinscher', 'Small Munsterlander', 'German Spitz', 'Leonberger', 'Anatolian Shepherd Dog', 'Collie', 'Dogue de Bordeaux', 'Miniature Schnauzer', 'Perro de Presa Canario'}
+
+Difference, Wiki - Coren
+{'Miniature Poodle', 'Redbone Coonhound', 'Toy Poodle', 'Black Russian Terrier', 'German Pinscher', 'English Toy Spaniel', 'Sussex Spaniel', 'Belgian Tervuren', 'Canaan Dog', 'American Eskimo', 'Spinone Italiano', 'Coton de Tulear', 'Fox Terrier Smooth', 'Nova Scotia Duck Tolling Retriever', 'Komondor', 'Polish Lowland Sheepdog', 'Silky Terrier', 'Toy Fox Terrier', 'Beauceron', 'Tibetan Mastiff', 'Plott Hound', 'Greater Swiss Mountain Dog'}
+
+Difference, Coren - Wiki
+{'Samoyed', 'Havanese', 'Miniature Pinscher', 'Wire Fox Terrier', 'Collie', 'Mastiff', 'Pembroke Welsh Corgi', 'Miniature Schnauzer', 'King Charles Spaniel', 'Belgian Shepherd', 'English Cocker Spaniel', 'Norfolk Terrier', 'Norwich Terrier', 'Papillon', 'Australian Silky Terrier'}
+
+AKC Mean
+              Obedient  Calm  Trainable  Sociable  Bold
+AKC                                                    
+Herding           0.77  0.30       0.85      0.45  0.30
+Hound             0.40  0.50       0.67      0.58  0.33
+Non-Sporting      0.51  0.44       0.67      0.44  0.22
+Sporting          0.73  0.67       0.62      0.67  0.62
+Terrier           0.51  0.30       0.75      0.30  0.35
+Toy               0.40  0.62       0.25      0.56  0.69
+Working           0.60  0.45       0.73      0.41  0.36
+
+AKC Standard Deviation
+              Obedient  Calm  Trainable  Sociable  Bold
+AKC                                                    
+Herding           0.20  0.48       0.24      0.44  0.48
+Hound             0.21  0.55       0.41      0.38  0.52
+Non-Sporting      0.26  0.53       0.43      0.39  0.44
+Sporting          0.15  0.49       0.38      0.44  0.48
+Terrier           0.17  0.48       0.35      0.48  0.47
+Toy               0.23  0.52       0.27      0.50  0.37
+Working           0.22  0.52       0.34      0.49  0.50
+
+AKC Count
+              Obedient  Calm  Trainable  Sociable  Bold
+AKC                                                    
+Herding             13    10         10        10    10
+Hound               21     6          6         6     6
+Non-Sporting        14     9          9         9     9
+Sporting            22    12         12        12    12
+Terrier             20    10         10        10    10
+Toy                 15     8          8         8     8
+Working             16    11         11        11    11
+
+NYC Mean:
+               Calm  Trainable  Sociable  Bold  Obedient
+Borough                                                 
+Bronx          0.38       0.37      0.38  0.59      0.51
+Brooklyn       0.46       0.42      0.46  0.60      0.48
+Manhattan      0.49       0.47      0.51  0.62      0.52
+Queens         0.40       0.40      0.42  0.58      0.51
+Staten Island  0.57       0.44      0.57  0.68      0.54
+
+NYC Standard Deviation:
+               Calm  Trainable  Sociable  Bold  Obedient
+Borough                                                 
+Bronx          0.49       0.38      0.48  0.37      0.28
+Brooklyn       0.50       0.37      0.48  0.39      0.28
+Manhattan      0.50       0.36      0.49  0.41      0.27
+Queens         0.49       0.38      0.48  0.38      0.28
+Staten Island  0.50       0.33      0.48  0.39      0.31
+
+NYC Count:
+               Calm  Trainable  Sociable  Bold  Obedient
+Borough                                                 
+Bronx           312        312       312   312       348
+Brooklyn        672        672       672   672       828
+Manhattan      1009       1009      1009  1009      1219
+Queens          585        585       585   585       721
+Staten Island   306        306       306   306       354
+
+Top NYC Dogs Count
+Yorkshire Terrier     398
+Shih Tzu              340
+Chihuahua             309
+Maltese               236
+Labrador Retriever    217
+Name: BreedName, dtype: int64
+
+Top Dogs By Borough
+
+Bronx
+Yorkshire Terrier    68
+Shih Tzu             45
+Chihuahua            42
+Pit Bull             27
+Maltese              26
+Name: BreedName, dtype: int64
+
+Brooklyn
+Shih Tzu             99
+Yorkshire Terrier    91
+Chihuahua            73
+Pit Bull             62
+Maltese              57
+Name: BreedName, dtype: int64
+
+Manhattan
+Yorkshire Terrier     109
+Chihuahua             103
+Shih Tzu               84
+Labrador Retriever     84
+Maltese                65
+Name: BreedName, dtype: int64
+
+Queens
+Yorkshire Terrier    88
+Maltese              69
+Chihuahua            69
+Shih Tzu             65
+Pit Bull             41
+Name: BreedName, dtype: int64
+
+Staten Island
+Shih Tzu              47
+Labrador Retriever    43
+Yorkshire Terrier     42
+Chihuahua             22
+Maltese               19
+Name: BreedName, dtype: int64
+
+ ('Yorkshire Terrier', 'Shih Tzu')
+Test statistic: 7.48
+P-value: 0.11246266909805729
+
+ ('Yorkshire Terrier', 'Chihuahua')
+Test statistic: 5.73
+P-value: 0.22045859628948278
+
+ ('Yorkshire Terrier', 'Maltese')
+Test statistic: 7.79
+P-value: 0.09962354106879621
+
+ ('Yorkshire Terrier', 'Labrador Retriever')
+Test statistic: 36.72
+P-value: 2.0576949641080475e-07
+
+ ('Shih Tzu', 'Chihuahua')
+Test statistic: 13.69
+P-value: 0.008345675309120405
+
+ ('Shih Tzu', 'Maltese')
+Test statistic: 12.44
+P-value: 0.014356090629419813
+
+ ('Shih Tzu', 'Labrador Retriever')
+Test statistic: 25.54
+P-value: 3.911272554107337e-05
+
+ ('Chihuahua', 'Maltese')
+Test statistic: 4.86
+P-value: 0.30219516255729534
+
+ ('Chihuahua', 'Labrador Retriever')
+Test statistic: 32.99
+P-value: 1.2002297511683226e-06
+
+ ('Maltese', 'Labrador Retriever')
+Test statistic: 33.91
+P-value: 7.780629645938062e-07
+Alternative Hypothesis: dogs from Staten Island are bolder than other dogs in New York.
+Ttest_indResult(statistic=3.435544629492364, pvalue=0.0006561220278463945)
+Alternative Hypothesis: dogs from Staten Island are calmer than other dogs in New York.
+Ttest_indResult(statistic=3.8462844628779225, pvalue=0.00014058887400346439)
+Alternative Hypothesis: dogs from New York are bolder than dogs in Adelaide and Edmonton.
+Ttest_indResult(statistic=6.039372226991816, pvalue=1.7169589349976154e-09)
+Alternative Hypothesis: dogs from Edmonton are more obedient than dogs
+ in Adelaide and New York.
+0.95    18352
+0.50    14161
+0.30     9479
+0.10     8138
+0.70     4515
+0.85     4317
+Name: Obedient, dtype: int64
+Ttest_indResult(statistic=-16.577408935991556, pvalue=9.746066231426407e-60)
+
+NYC Mean
+Bold         0.61
+Calm         0.46
+Obedient     0.51
+Sociable     0.47
+Trainable    0.43
+dtype: float64
+
+NYC Standard Deviation
+Bold         0.46
+Calm         0.50
+Obedient     0.24
+Sociable     0.43
+Trainable    0.38
+dtype: float64
+
+Seattle Mean
+Bold         0.60
+Calm         0.55
+Obedient     0.66
+Sociable     0.58
+Trainable    0.60
+dtype: float64
+
+Seattle Standard Deviation
+Bold         0.46
+Calm         0.50
+Obedient     0.24
+Sociable     0.43
+Trainable    0.38
+dtype: float64
+
+Adelaide Mean
+Bold         0.47
+Calm         0.35
+Obedient     0.52
+Sociable     0.35
+Trainable    0.52
+dtype: float64
+
+Adelaide Standard Deviation
+Bold         0.46
+Calm         0.50
+Obedient     0.24
+Sociable     0.43
+Trainable    0.38
+dtype: float64
+
+Edmonton Mean
+Bold         0.58
+Calm         0.52
+Obedient     0.61
+Sociable     0.52
+Trainable    0.58
+dtype: float64
+
+Edmonton Standard Deviation
+Bold         0.46
+Calm         0.50
+Obedient     0.24
+Sociable     0.43
+Trainable    0.38
+dtype: float64
+
+UK and Ireland Mean
+          Obedient  Calm  Trainable  Sociable  Bold
+Origin                                             
+England       0.51  0.70        0.4      0.65   0.7
+Ireland       0.62  0.75        0.5      0.62   0.5
+Scotland      0.59  0.80        0.6      0.80   0.8
+Wales         0.59  0.00        1.0      0.00   0.0
+
+UK and Ireland Standard Deviation
+          Obedient  Calm  Trainable  Sociable  Bold
+Origin                                             
+England       0.21  0.48       0.32      0.47  0.42
+Ireland       0.15  0.50       0.41      0.48  0.58
+Scotland      0.25  0.45       0.22      0.45  0.45
+Wales         0.24   NaN        NaN       NaN   NaN
+
+UK and Ireland Count
+          Obedient  Calm  Trainable  Sociable  Bold
+Origin                                             
+England         19    10         10        10    10
+Ireland          6     4          4         4     4
+Scotland        10     5          5         5     5
+Wales            4     1          1         1     1
+
+Ancestral Origin Mean, n>2
+                Bold  Calm  Obedient  Sociable  Trainable
+Origin                                                   
+China           0.50  0.83      0.27      0.67       0.42
+France          0.38  0.25      0.70      0.38       0.62
+Germany         0.08  0.08      0.75      0.12       1.00
+Ireland         0.50  0.75      0.55      0.62       0.50
+United Kingdom  0.68  0.68      0.61      0.66       0.57
+United States   0.00  0.33      0.57      0.17       0.67
+
+Ancestral Origin Standard Deviation
+                Bold  Calm  Obedient  Sociable  Trainable
+Origin                                                   
+China           0.55  0.41      0.15      0.41       0.38
+France          0.48  0.50      0.29      0.48       0.48
+Germany         0.29  0.29      0.20      0.31       0.00
+Ireland         0.58  0.50      0.10      0.48       0.41
+United Kingdom  0.45  0.48      0.25      0.47       0.32
+United States   0.00  0.58      0.12      0.29       0.58
+
+Ancestral Origin Count
+                 Bold  Calm  Obedient  Sociable  Trainable
+Origin                                                    
+Belgium             1     1         1         1          1
+Canada              1     1         1         1          1
+China               6     6         6         6          6
+Croatia             1     1         1         1          1
+France              4     4         4         4          4
+Germany            12    12        12        12         12
+Hungary             1     1         1         1          1
+Ireland             4     4         4         4          4
+Italy               2     2         2         2          2
+Japan               1     1         1         1          1
+Mexico              1     1         1         1          1
+Russia              1     1         1         1          1
+Scotland            1     1         1         1          1
+Southern Africa     1     1         1         1          1
+Spain               1     1         1         1          1
+Switzerland         2     2         2         2          2
+United Kingdom     22    22        22        22         22
+United States       3     3         3         3          3
+Alternative Hypothesis: Dogs with ancestry from the UK are bolder than other dogs.
+Ancestral UK Bold Mean:
+0.6818181818181818
+Ancestral Non-UK Bold Mean:
+0.313953488372093
+Ttest_indResult(statistic=3.1133301873945967, pvalue=0.00331078574427337)
+Null Hypothesis: The average obedience of UK dogs is the same as non-UK dogs.
+Alternative Hypothesis: The average obedience of UK dogs is different from non-UK dogs.
+Ttest_indResult(statistic=0.22598874581524203, pvalue=0.8223196147677269)
+Alternative Hypothesis: Dogs with German ancestry are more obedient than other dogs.
+Ancestral Germany Obedient Mean:
+0.7541666666666668
+Ancestral Non-Germany Obedient Mean:
+0.5613207547169812
+Ttest_indResult(statistic=2.8770141108829277, pvalue=0.009547953620993713)
+Alternative Hypothesis: Dogs with German ancestry are less calm than other dogs.
+Ancestral Germany Calm Mean:
+0.08333333333333333
+Ancestral Non-Germany Calm Mean:
+0.5660377358490566
+Ttest_indResult(statistic=-4.468667004142404, pvalue=0.00011605889988818817)
