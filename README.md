@@ -11,7 +11,7 @@ This code should be ready to use; the Jupyter Notebook file `analysis.ipynb` is 
 
 There's much more to explore with this data. I plan to undertake some of the following analyses at a later date:
 
-* New York voter registration information is public, so it might be interesting to correlate what kinds of dogs Republicans, Democrats, and Independent voters prefer.
+* Voter registration information is public, so it might be interesting to correlate what kinds of dogs Republicans, Democrats, and Independent voters prefer.
 
 * Academics have already looked at genetic markers, but it might be interesting to look at genetic markers by location.
 
