@@ -14,7 +14,7 @@ This code should be ready to use; the Jupyter Notebook file `analysis.ipynb` is 
 
 ## For future study
 
-There's much more to explore with this data. I may take a stab at some of the following, but others are also welcome to join in:
+There's much more to explore with this data. I plan to undertake some of the following analyses at a later date:
 
 * New York voter registration information is public, so it might be interesting to correlate what kinds of dogs Republicans, Democrats, and Independent voters prefer.
 
@@ -38,4 +38,4 @@ There's much more to explore with this data. I may take a stab at some of the fo
 
 [Trainability and boldness traits differ between dog breed clusters based on conventional breed categories and genetic relatedness](https://www.researchgate.net/publication/228485434_Trainability_and_boldness_traits_differ_between_dog_breed_clusters_based_on_conventional_breed_categories_and_genetic_relatedness) by Borbála Turcsán, Enikő Kubinyi, Ádám Miklósi
 
-Further research on dogs in the UK: [Estimation of the number and demographics of companion dogs in the UK](https://bmcvetres.biomedcentral.com/articles/10.1186/1746-6148-7-74) by Lucy Asher, Emma L Buckland, C Ianthi Phylactopoulos, Martin C Whiting, Siobhan M Abeyesinghe and Christopher M Wathes
+<!-- Further research on dogs in the UK: [Estimation of the number and demographics of companion dogs in the UK](https://bmcvetres.biomedcentral.com/articles/10.1186/1746-6148-7-74) by Lucy Asher, Emma L Buckland, C Ianthi Phylactopoulos, Martin C Whiting, Siobhan M Abeyesinghe and Christopher M Wathes -->
