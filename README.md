@@ -7,11 +7,6 @@ This study explores dog registration record data from NYC, Seattle, Edmonton, an
 This code should be ready to use; the Jupyter Notebook file `analysis.ipynb` is in the `src` directory. Data cleaning was performed on the original datasets in order to ensure consistency. All data is in the `data` directory.
 <!-- In another file, I used the  fuzzing add-on `fuzzywuzzy`. You can run the `src/analysis-fuzzy.py` file, but you may need to install fuzzywuzzy by typing `pip install fuzzywuzzy[speedup]`. -->
 
-## Results
-
-<!-- For much more on this, please visit [Doggydatazone.com](https://www.doggydatazone.com). -->
-![AKC Data](plots/akc.png)
-
 ## For future study
 
 There's much more to explore with this data. I plan to undertake some of the following analyses at a later date:
